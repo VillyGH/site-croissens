@@ -1,5 +1,4 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import { createStore } from "vuex";
 import authentication from "./modules/authentication";
 import VuexPersistence from "vuex-persist";
 // Code en commentaire ci-dessous: voir note de cours "Conserver les données dans le navigateur"
@@ -14,11 +13,11 @@ const vuexLocal = new VuexPersistence({
   }),
 });
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
-  modules: {
-    authentication,
+const store = createStore({
+  state: {
+    patients: [authentication],
   },
   plugins: [vuexLocal.plugin],
 });
+
+export default store;

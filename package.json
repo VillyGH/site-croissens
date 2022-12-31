@@ -5,13 +5,16 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
     "lint": "eslint --fix --ext .js,.vue src"
   },
   "dependencies": {
     "@babel/preset-env": "^7.20.2",
+    "@vue/cli-plugin-unit-jest": "^5.0.8",
     "axios": "^1.2.2",
     "bootstrap-vue": "^2.23.1",
     "core-js": "^3.8.3",
+    "jest-when": "^3.5.2",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vue3-leaflet": "^1.0.43",
