@@ -20,7 +20,7 @@ router.beforeEach((to, from, next) => {
     })
   } else if (to.meta.authPage && store.getters['authentication/isLoggedIn']) {
     next({
-      name: 'WelcomePage'
+      name: 'Home'
     })
   } else {
     next()

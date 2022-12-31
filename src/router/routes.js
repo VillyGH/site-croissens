@@ -1,15 +1,15 @@
-import WelcomePage from '@/views/WelcomePage.vue'
+import Home from '@/views/Home.vue'
 import Therapy from '@/views/Therapy.vue'
 import PsyConscience from '@/views/Psy-Conscience.vue'
-import Login from '@/views/login/Login.vue'
-import Register from '@/views/register/Register.vue'
+import Login from '@/views/Login.vue'
+import Register from '@/views/Register.vue'
 import PageNotFound from '@/views/PageNotFound.vue'
 
 export default [
   {
     path: '/',
-    name: 'WelcomePage',
-    component: WelcomePage
+    name: 'Home',
+    component: Home
   },
   {
     path: '/therapy',
