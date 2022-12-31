@@ -1,30 +1,30 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import routes from './routes'
-import store from '../store/index'
+import Vue from "vue";
+import VueRouter from "vue-router";
+import routes from "./routes";
+import store from "../store/index";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
 router.beforeEach((to, from, next) => {
   // https://router.vuejs.org/guide/advanced/meta.html#route-meta-fields
-  if (to.meta.requiresAuth && !store.getters['authentication/isLoggedIn']) {
+  if (to.meta.requiresAuth && !store.getters["authentication/isLoggedIn"]) {
     next({
-      name: 'Login',
-      query: { redirect: to.path }
-    })
-  } else if (to.meta.authPage && store.getters['authentication/isLoggedIn']) {
+      name: "Login",
+      query: { redirect: to.path },
+    });
+  } else if (to.meta.authPage && store.getters["authentication/isLoggedIn"]) {
     next({
-      name: 'Home'
-    })
+      name: "Home",
+    });
   } else {
-    next()
+    next();
   }
-})
+});
 
-export default router
+export default router;

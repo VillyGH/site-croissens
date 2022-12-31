@@ -20,34 +20,34 @@
 </template>
 <script>
 export default {
-  created () {
-    this.$store.commit('authentication/clearError')
+  created() {
+    this.$store.commit("authentication/clearError");
   },
-  data () {
+  data() {
     return {
-      email: '',
-      name: '',
-      password: ''
-    }
+      email: "",
+      name: "",
+      password: "",
+    };
   },
   methods: {
-    async register () {
-      await this.$store.dispatch('authentication/register', {
+    async register() {
+      await this.$store.dispatch("authentication/register", {
         email: this.email,
         name: this.name,
-        password: this.password
-      })
+        password: this.password,
+      });
       if (!this.authServiceError) {
         this.$router.push({
-          name: 'Login'
-        })
+          name: "Login",
+        });
       }
-    }
+    },
   },
   computed: {
-    authServiceError () {
-      return this.$store.state.authentication.authServiceError
-    }
-  }
-}
+    authServiceError() {
+      return this.$store.state.authentication.authServiceError;
+    },
+  },
+};
 </script>

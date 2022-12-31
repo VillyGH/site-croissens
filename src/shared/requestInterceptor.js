@@ -1,13 +1,13 @@
-import axios from 'axios'
-import store from '../store/index'
+import axios from "axios";
+import store from "../store/index";
 
-const requestInterceptor = axios.create({})
+const requestInterceptor = axios.create({});
 
-requestInterceptor.interceptors.request.use(req => {
-  if (store.getters['authentication/isLoggedIn']) {
-    req.headers.authorization = `Bearer ${store.state.authentication.token}`
+requestInterceptor.interceptors.request.use((req) => {
+  if (store.getters["authentication/isLoggedIn"]) {
+    req.headers.authorization = `Bearer ${store.state.authentication.token}`;
   }
-  return req
-})
+  return req;
+});
 
-export default requestInterceptor
+export default requestInterceptor;

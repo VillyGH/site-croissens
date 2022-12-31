@@ -49,18 +49,18 @@
 <script>
 export default {
   computed: {
-    isLoggedIn () {
-      return this.$store.getters['authentication/isLoggedIn']
-    }
+    isLoggedIn() {
+      return this.$store.getters["authentication/isLoggedIn"];
+    },
   },
   methods: {
     // https://stackoverflow.com/questions/52229947/activate-method-on-router-link-click-in-vue
-    logout () {
-      this.$store.dispatch('authentication/logout')
+    logout() {
+      this.$store.dispatch("authentication/logout");
       this.$router.push({
-        name: 'Login'
-      })
-    }
-  }
-}
+        name: "Login",
+      });
+    },
+  },
+};
 </script>
