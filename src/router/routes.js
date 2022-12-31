@@ -38,7 +38,7 @@ export default [
     },
   },
   {
-    path: "*",
+    path: "/:catchAll(.*)",
     name: "PageNotFound",
     component: PageNotFound,
   },

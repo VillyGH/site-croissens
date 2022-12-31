@@ -1,5 +1,4 @@
 <template>
-  <!-- v-bind:class="nav-link {active:$route.name == 'Home'} -->
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="navbar-nav mr-auto">
       <router-link

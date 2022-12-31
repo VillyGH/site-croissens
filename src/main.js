@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue, { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -13,8 +13,10 @@ Vue.use(uiTextPlugin);
 
 Vue.config.productionTip = false;
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+const app = createApp(App);
+app.use(router);
+app.use(store);
+app.config.globalProperties.$getUiText = (key) => {
+  return uiTextPlugin[key];
+};
+app.mount("#app");
