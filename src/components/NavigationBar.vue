@@ -16,7 +16,7 @@
       >
       <router-link
         class="nav-link ml-5"
-        v-bind:class="{ active: $route.name == 'Psy-Conscience' }"
+        v-bind:class="{ active: $route.name == 'psy-conscience' }"
         v-bind:to="{ name: 'Psy-Conscience' }"
         >Psy-Conscience</router-link
       >
