@@ -2,7 +2,6 @@
   <div>
     <router-view />
     <h1>Psy-Conscience</h1>
-    <img id="imgnath" src="img/photonath.JPG" />
     <div class="col col80 col-lg-6">
       <ul>
         <li class="psy_list" style="margin-top: 7%">Ateliers</li>

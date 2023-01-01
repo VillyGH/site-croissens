@@ -8,7 +8,6 @@ async function getToken(credential) {
       email: credential.email,
       password: credential.password,
     });
-    console.log(response);
     const token = response.data.accessToken;
     return token;
   } catch (error) {
