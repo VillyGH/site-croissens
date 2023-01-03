@@ -1,6 +1,7 @@
 import Home from "@/views/Home.vue";
-import Therapy from "@/views/Therapy.vue";
 import PsyConscience from "@/views/Psy-Conscience.vue";
+import Blog from "@/views/Blog.vue";
+import About from "@/views/About.vue";
 import Login from "@/views/Login.vue";
 import Register from "@/views/Register.vue";
 import PageNotFound from "@/views/PageNotFound.vue";
@@ -12,14 +13,19 @@ export default [
     component: Home,
   },
   {
-    path: "/therapy",
-    name: "Therapy",
-    component: Therapy,
-  },
-  {
     path: "/psy-conscience",
     name: "Psy-Conscience",
     component: PsyConscience,
+  },
+  {
+    path: "/blog",
+    name: "Blog",
+    component: Blog,
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: About,
   },
   {
     path: "/login",

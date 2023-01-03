@@ -40,7 +40,7 @@ export default {
       });
       if (!this.authServiceError) {
         this.$router.push({
-          name: "WelcomePage",
+          name: "Home",
         });
       }
     },

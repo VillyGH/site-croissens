@@ -1,4 +1,5 @@
 <template>
+  <img src="../assets/img/logo.jpg" alt="Logo Croissens" />
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="navbar-nav mr-auto">
       <router-link
@@ -9,15 +10,21 @@
       >
       <router-link
         class="nav-link ml-5"
-        v-bind:class="{ active: $route.name == 'Map' }"
-        v-bind:to="{ name: 'Therapy' }"
-        >Thérapie</router-link
+        v-bind:class="{ active: $route.name == 'Blog' }"
+        v-bind:to="{ name: 'Blog' }"
+        >Blog</router-link
       >
       <router-link
         class="nav-link ml-5"
-        v-bind:class="{ active: $route.name == 'psy-conscience' }"
+        v-bind:class="{ active: $route.name == 'Psy-conscience' }"
         v-bind:to="{ name: 'Psy-Conscience' }"
         >Psy-Conscience</router-link
+      >
+      <router-link
+        class="nav-link ml-5"
+        v-bind:class="{ active: $route.name == 'About' }"
+        v-bind:to="{ name: 'About' }"
+        >À propos</router-link
       >
     </div>
     <div class="navbar-nav ml-auto">
