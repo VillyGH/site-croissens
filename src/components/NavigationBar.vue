@@ -1,6 +1,6 @@
 <template>
-  <img src="../assets/img/logo.jpg" alt="Logo Croissens" />
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <img src="../assets/img/logo.jpg" alt="Logo Croissens" />
     <div class="navbar-nav mr-auto">
       <router-link
         class="nav-link"
