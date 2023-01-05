@@ -4,16 +4,26 @@
       <b-form @submit.prevent="register">
         <h1>Créer un compte</h1>
         <label>Courriel</label>
-        <b-form-input required v-model="email" placeholder="Adresse courriel" type="text" />
+        <b-form-input
+          required
+          v-model="email"
+          placeholder="Adresse courriel"
+          type="text"
+        />
 
         <label>Mot de passe</label>
-        <b-form-input required v-model="password" placeholder="Mot de passe" type="password" />
+        <b-form-input
+          required
+          v-model="password"
+          placeholder="Mot de passe"
+          type="password"
+        />
         <b-button type="submit" variant="primary" class="mt-4"
           >Créer le compte</b-button
         >
       </b-form>
       <b-button @click="signInWithGoogle">Se connecter avec Google</b-button>
-      <div v-if="authServiceError"></div>
+      <div v-if="errorMessage"></div>
     </b-container>
   </div>
 </template>
@@ -22,40 +32,20 @@ import { getAuth, createUserWithEmailAndPassword } from "@firebase/util";
 import { ref } from "vue";
 const email = ref("");
 const password = ref("");
+const errorMessage = ref("");
 
 const register = () => {
-  createUserWithEmailAndPassword(getAuth(), email.value, password.value);
-}
-
-export default {
-  created() {
-    this.$store.commit("authentication/clearError");
-  },
-  data() {
-    return {
-      email: "",
-      name: "",
-      password: "",
-    };
-  },
-  methods: {
-    async register() {
-      await this.$store.dispatch("authentication/register", {
-        email: this.email,
-        name: this.name,
-        password: this.password,
+  createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+    .then((data) => {
+      console.log("L'utilisateur a été enregistré avec succès !");
+      router.push({
+        name: "Login",
       });
-      if (!this.authServiceError) {
-        this.$router.push({
-          name: "Login",
-        });
-      }
-    },
-  },
-  computed: {
-    authServiceError() {
-      return this.$store.state.authentication.authServiceError;
-    },
-  },
+    })
+    .catch((error) => {
+      console.log("Une erreur a eu lieu: " + error);
+      errorMessage = "Une erreur s'est produite: " + error;
+    });
 };
+
 </script>

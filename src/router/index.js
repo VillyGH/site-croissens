@@ -8,7 +8,7 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
   // https://router.vuejs.org/guide/advanced/meta.html#route-meta-fields
   if (to.meta.requiresAuth && !store.getters["authentication/isLoggedIn"]) {
     next({
@@ -22,6 +22,6 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
-});
+}); */
 
 export default router;

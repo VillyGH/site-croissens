@@ -1,54 +1,48 @@
 <template>
   <div>
     <b-container>
-      <b-form @submit.prevent="login">
-        <h1>Connexion</h1>
-        <label>Courriel</label>
-        <b-form-input required v-model="email" id="email" type="text" />
-        <label>Mot de passe</label>
-        <b-form-input
-          required
-          v-model="password"
-          id="password"
-          type="password"
-        />
-        <b-button variant="primary" type="submit" class="mt-4"
-          >Se connecter</b-button
-        >
-      </b-form>
+      <h1>Connexion</h1>
+      <label>Adresse courriel</label>
+      <b-form-input
+        required
+        v-model="email"
+        placeholder="Adresse courriel"
+        type="text"
+      />
 
-      <div class="error" v-if="authServiceError">{{ authServiceError }}</div>
+      <label>Mot de passe</label>
+      <b-form-input
+        required
+        v-model="password"
+        placeholder="Mot de passe"
+        type="password"
+      />
+      <b-button @click="login" variant="primary" class="mt-4"
+        >Se connecter</b-button
+      >
+      <b-button @click="signInWithGoogle">Se connecter avec Google</b-button>
+      <div>{{ errorMessage }}</div>
     </b-container>
   </div>
 </template>
 <script>
-export default {
-  created() {
-    this.$store.commit("authentication/clearError");
-  },
-  data() {
-    return {
-      email: "",
-      password: "",
-    };
-  },
-  methods: {
-    async login() {
-      await this.$store.dispatch("authentication/login", {
-        email: this.email,
-        password: this.password,
+import { getAuth, signInWithEmailAndPassword } from "@firebase/util";
+import { ref } from "vue";
+const email = ref("");
+const password = ref("");
+const errorMessage = ref("");
+
+const register = () => {
+  signInWithEmailAndPassword(getAuth(), email.value, password.value)
+    .then((data) => {
+      console.log("L'utilisateur a été enregistré avec succès !");
+      router.push({
+        name: "Login",
       });
-      if (!this.authServiceError) {
-        this.$router.push({
-          name: "Home",
-        });
-      }
-    },
-  },
-  computed: {
-    authServiceError() {
-      return this.$store.state.authentication.authServiceError;
-    },
-  },
+    })
+    .catch((error) => {
+      errorMessage = "Une erreur s'est produite: " + error;
+      console.log(errorMessage);
+    });
 };
 </script>
