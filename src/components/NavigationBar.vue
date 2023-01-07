@@ -5,25 +5,25 @@
       <router-link
         class="nav-link"
         v-bind:class="{ active: $route.name == 'Home' }"
-        v-bind:to="{ name: 'Home' }"
+        :to="{ name: 'Home' }"
         >Accueil</router-link
       >
       <router-link
         class="nav-link ml-5"
         v-bind:class="{ active: $route.name == 'Blog' }"
-        v-bind:to="{ name: 'Blog' }"
+        :to="{ name: 'Blog' }"
         >Blog</router-link
       >
       <router-link
         class="nav-link ml-5"
         v-bind:class="{ active: $route.name == 'Psy-conscience' }"
-        v-bind:to="{ name: 'Psy-Conscience' }"
+        :to="{ name: 'Psy-Conscience' }"
         >Psy-Conscience</router-link
       >
       <router-link
         class="nav-link ml-5"
         v-bind:class="{ active: $route.name == 'About' }"
-        v-bind:to="{ name: 'About' }"
+        :to="{ name: 'About' }"
         >À propos</router-link
       >
     </div>
@@ -36,7 +36,7 @@
         class="nav-link"
         v-bind:class="{ active: $route.name == 'Login' }"
         v-else
-        v-bind:to="{ name: 'Login' }"
+        :to="{ name: 'Login' }"
       >
         Connexion
       </router-link>
@@ -44,7 +44,7 @@
         class="nav-link"
         v-bind:class="{ active: $route.name == 'Register' }"
         v-if="!isLoggedIn"
-        v-bind:to="{ name: 'Register' }"
+        :to="{ name: 'Register' }"
       >
         Inscription
       </router-link>

@@ -26,13 +26,14 @@
   </div>
 </template>
 <script>
+import router from "./router";
 import { getAuth, signInWithEmailAndPassword } from "@firebase/util";
 import { ref } from "vue";
 const email = ref("");
 const password = ref("");
-const errorMessage = ref();
+let errorMessage = ref();
 
-const register = () => {
+const login = () => {
   signInWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
       console.log("L'utilisateur a été enregistré avec succès !");
