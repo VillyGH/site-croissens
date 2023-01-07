@@ -53,20 +53,23 @@
 </template>
 
 <script>
-export default {
-  computed: {
-    isLoggedIn() {
-      return this.$store.getters["authentication/isLoggedIn"];
-    },
-  },
-  methods: {
-    // https://stackoverflow.com/questions/52229947/activate-method-on-router-link-click-in-vue
-    logout() {
-      this.$store.dispatch("authentication/logout");
-      this.$router.push({
-        name: "Login",
-      });
-    },
-  },
+import { onMounted, ref } from "vue";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+
+const isLoggedIn = ref(false);
+let auth;
+onMounted(() => {
+  onAuthStateChanged(getAuth(), (user) => {
+    auth = getAuth();
+    if (user) {
+      isLoggedIn.value = true;
+    } else {
+      isLoggedIn.value = false;
+    }
+  });
+});
+
+const logOut = () => {
+  signOut(auth).then(() => {});
 };
 </script>

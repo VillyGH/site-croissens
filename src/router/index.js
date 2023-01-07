@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import routes from "./routes";
-import store from "../store/index";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -8,20 +8,33 @@ const router = createRouter({
   routes,
 });
 
-/* router.beforeEach((to, from, next) => {
+const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const removeListener = onAuthStateChanged(
+      getAuth(),
+      (user) => {
+        removeListener();
+        resolve(user);
+      },
+      reject
+    );
+  });
+};
+
+router.beforeEach(async (to, from, next) => {
   // https://router.vuejs.org/guide/advanced/meta.html#route-meta-fields
-  if (to.meta.requiresAuth && !store.getters["authentication/isLoggedIn"]) {
-    next({
-      name: "Login",
-      query: { redirect: to.path },
-    });
-  } else if (to.meta.authPage && store.getters["authentication/isLoggedIn"]) {
-    next({
-      name: "Home",
-    });
+  if (to.matched.some((record) => record.meta.authPage)) {
+    if (await getCurrentUser()) {
+      next({
+        name: "Login",
+        query: { redirect: to.path },
+      });
+    } else {
+      next("/");
+    }
   } else {
     next();
   }
-}); */
+});
 
 export default router;

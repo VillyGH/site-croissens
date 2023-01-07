@@ -1,7 +1,6 @@
-import Vue, { createApp } from "vue";
-import App from "./App.vue";
+import Vue /*, { createApp } */ from "vue";
+//import App from "./App.vue";
 import router from "./router";
-import store from "./store";
 import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -9,7 +8,7 @@ import uiTextPlugin from "./externalization/uiTextPlugin";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+//import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,12 +21,12 @@ const firebaseConfig = {
   storageBucket: "sitecroissens.appspot.com",
   messagingSenderId: "1009267990375",
   appId: "1:1009267990375:web:892691f9510747518299c2",
-  measurementId: "G-0VCJZKTJET"
+  measurementId: "G-0VCJZKTJET",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//const analytics = getAnalytics(app);
 
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
@@ -36,7 +35,6 @@ Vue.use(uiTextPlugin);
 Vue.config.productionTip = false;
 
 app.use(router);
-app.use(store);
 app.config.globalProperties.$getUiText = (key) => {
   return uiTextPlugin[key];
 };

@@ -28,6 +28,7 @@
   </div>
 </template>
 <script>
+import { GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
 import { getAuth, createUserWithEmailAndPassword } from "@firebase/util";
 import { ref } from "vue";
 const email = ref("");
@@ -43,9 +44,33 @@ const register = () => {
       });
     })
     .catch((error) => {
-      console.log("Une erreur a eu lieu: " + error);
       errorMessage = "Une erreur s'est produite: " + error;
+      console.log(errorMessage);
+      switch (error.code) {
+        case "auth/invalid-email":
+          errorMessage.value = "Adresse courriel invalide";
+          break;
+        case "auth/user-not-found":
+          errorMessage.value =
+            "Aucun compte avec cette adresse courriel a été trouvé";
+          break;
+        case "auth/wrong-password":
+          errorMessage.value = "Mot de passe invalide";
+          break;
+        default:
+          errorMessage.value =
+            "Combinaison de mot de passe et d'adresse courriel invalide";
+          break;
+      }
     });
 };
 
+const signInWithGoogle = () => {
+  const provider = new GoogleAuthProvider();
+  signInWithPopup(getAuth(), provider)
+    .then((result) => {
+      router.push({ name: "Login" });
+    })
+    .catch((error) => {});
+};
 </script>
