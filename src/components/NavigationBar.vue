@@ -52,16 +52,14 @@
   </nav>
 </template>
 
-<script>
-export default {};
+<script setup>
 import { onMounted, ref } from "vue";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../firebase/firebaseInit.js";
 
 const isLoggedIn = ref(false);
-let auth;
 onMounted(() => {
-  onAuthStateChanged(getAuth(), (user) => {
-    auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
     if (user) {
       isLoggedIn.value = true;
     } else {
