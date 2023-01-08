@@ -53,6 +53,7 @@
 </template>
 
 <script>
+export default {};
 import { onMounted, ref } from "vue";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 

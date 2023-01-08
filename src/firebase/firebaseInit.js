@@ -12,7 +12,8 @@ const firebaseConfig = {
   measurementId: "G-0VCJZKTJET",
 };
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
 //const analytics = getAnalytics(app);
 
