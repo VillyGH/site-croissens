@@ -26,9 +26,15 @@
   </div>
 </template>
 <script>
-import router from "./router";
-import { getAuth, signInWithEmailAndPassword } from "@firebase/util";
+import router from "@/router";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "@firebase/util";
+import { GoogleAuthProvider } from "@firebase/auth";
 import { ref } from "vue";
+
 const email = ref("");
 const password = ref("");
 let errorMessage = ref();

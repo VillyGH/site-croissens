@@ -28,12 +28,13 @@
   </div>
 </template>
 <script>
+import router from "@/router";
 import { GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
 import { getAuth, createUserWithEmailAndPassword } from "@firebase/util";
 import { ref } from "vue";
 const email = ref("");
 const password = ref("");
-const errorMessage = ref("");
+let errorMessage = ref("");
 
 const register = () => {
   createUserWithEmailAndPassword(getAuth(), email.value, password.value)
