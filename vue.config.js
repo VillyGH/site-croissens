@@ -11,10 +11,13 @@ module.exports = {
           ...options,
           compilerOptions: {
             compatConfig: {
-              MODE: 2,
+              MODE: 3,
             },
           },
         };
       });
   },
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/site-croissens/'
+    : '/'
 };

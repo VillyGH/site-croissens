@@ -28,7 +28,7 @@
       >
     </div>
     <div class="navbar-nav ml-auto">
-      <b-link @click="logout" v-if="isLoggedIn" class="nav-link logout">
+      <b-link @click="logOut" v-if="isLoggedIn" class="nav-link logout">
         Se déconnecter
       </b-link>
 
@@ -55,7 +55,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../firebase/firebaseInit.js";
+import { auth } from "@/firebase/firebaseInit";
 
 const isLoggedIn = ref(false);
 onMounted(() => {

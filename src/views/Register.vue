@@ -1,9 +1,9 @@
 <template>
   <div>
-    <b-container>
+    <b-container class="mt-5">
       <b-form @submit.prevent="register">
         <h1>Créer un compte</h1>
-        <label>Courriel</label>
+        <label class="mt-3">Courriel</label>
         <b-form-input
           required
           v-model="email"
@@ -11,40 +11,41 @@
           type="text"
         />
 
-        <label>Mot de passe</label>
+        <label class="mt-3">Mot de passe</label>
         <b-form-input
           required
           v-model="password"
           placeholder="Mot de passe"
           type="password"
         />
+        <div class="mt-4 text-danger">{{ errorMessage }}</div>
         <b-button type="submit" variant="primary" class="mt-4"
           >Créer le compte</b-button
         >
       </b-form>
-      <b-button @click="signInWithGoogle">Se connecter avec Google</b-button>
-      <div v-if="errorMessage"></div>
+      <b-button @click="signInWithGoogle" variant="danger" class="mt-4"
+        >Se connecter avec Google</b-button
+      >
     </b-container>
   </div>
 </template>
-<script>
-export default {};
-
-import router from "@/router";
+<script setup>
+import { useRouter } from "vue-router";
 import {
   GoogleAuthProvider,
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithPopup,
 } from "@firebase/auth";
+import { auth } from "@/firebase/firebaseInit";
 import { ref } from "vue";
 
 const email = ref("");
 const password = ref("");
 let errorMessage = ref("");
+const router = useRouter();
 
 const register = () => {
-  createUserWithEmailAndPassword(getAuth(), email.value, password.value)
+  createUserWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
       console.log("L'utilisateur a été enregistré avec succès !");
       router.push({
@@ -52,8 +53,6 @@ const register = () => {
       });
     })
     .catch((error) => {
-      errorMessage = "Une erreur s'est produite: " + error;
-      console.log(errorMessage);
       switch (error.code) {
         case "auth/invalid-email":
           errorMessage.value = "Adresse courriel invalide";
@@ -66,8 +65,7 @@ const register = () => {
           errorMessage.value = "Mot de passe invalide";
           break;
         default:
-          errorMessage.value =
-            "Combinaison de mot de passe et d'adresse courriel invalide";
+          errorMessage.value = "Compte déjà existant";
           break;
       }
     });
@@ -75,7 +73,7 @@ const register = () => {
 
 const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
-  signInWithPopup(getAuth(), provider)
+  signInWithPopup(auth, provider)
     .then((result) => {
       router.push({ name: "Login" });
     })

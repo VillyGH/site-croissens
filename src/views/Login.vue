@@ -1,34 +1,36 @@
 <template>
   <div>
-    <b-container>
-      <h1>Connexion</h1>
-      <label>Adresse courriel</label>
-      <b-form-input
-        required
-        v-model="email"
-        placeholder="Adresse courriel"
-        type="text"
-      />
+    <b-container class="mt-5">
+      <b-form @submit.prevent="login">
+        <h1>Connexion</h1>
+        <label class="mt-3">Adresse courriel</label>
+        <b-form-input
+          required
+          v-model="email"
+          placeholder="Adresse courriel"
+          type="text"
+        />
 
-      <label>Mot de passe</label>
-      <b-form-input
-        required
-        v-model="password"
-        placeholder="Mot de passe"
-        type="password"
-      />
-      <b-button @click="login" variant="primary" class="mt-4"
-        >Se connecter</b-button
+        <label class="mt-3">Mot de passe</label>
+        <b-form-input
+          required
+          v-model="password"
+          placeholder="Mot de passe"
+          type="password"
+        />
+        <div class="mt-4 text-danger">{{ errorMessage }}</div>
+        <b-button type="submit" variant="primary" class="mt-4"
+          >Se connecter</b-button
+        >
+      </b-form>
+      <b-button @click="signInWithGoogle" variant="danger" class="mt-4"
+        >Se connecter avec Google</b-button
       >
-      <b-button @click="signInWithGoogle">Se connecter avec Google</b-button>
-      <div>{{ errorMessage }}</div>
     </b-container>
   </div>
 </template>
-<script>
-export default {};
-
-import router from "@/router";
+<script setup>
+import { useRouter } from "vue-router";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -40,18 +42,17 @@ import { ref } from "vue";
 const email = ref("");
 const password = ref("");
 let errorMessage = ref();
+const router = useRouter();
 
 const login = () => {
   signInWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
       console.log("L'utilisateur a été enregistré avec succès !");
       router.push({
-        name: "Login",
+        name: "Home",
       });
     })
     .catch((error) => {
-      errorMessage = "Une erreur s'est produite: " + error;
-      console.log(errorMessage);
       switch (error.code) {
         case "auth/invalid-email":
           errorMessage.value = "Adresse courriel invalide";
