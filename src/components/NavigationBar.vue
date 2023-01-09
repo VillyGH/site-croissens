@@ -14,11 +14,42 @@
         :to="{ name: 'Blog' }"
         >Blog</router-link
       >
+      <b-nav-item-dropdown
+        id="my-nav-dropdown"
+        text="Activités"
+        toggle-class="nav-link-custom"
+        right
+      >
+        <b-dropdown-item
+          ><router-link
+            class="nav-link ml-5"
+            v-bind:class="{ active: $route.name == 'Ateliers' }"
+            :to="{ name: 'Ateliers' }"
+            >Ateliers</router-link
+          ></b-dropdown-item
+        >
+        <b-dropdown-item
+          ><router-link
+            class="nav-link ml-5"
+            v-bind:class="{ active: $route.name == 'SouperCauserie' }"
+            :to="{ name: 'SouperCauserie' }"
+            >Soupers Causerie</router-link
+          ></b-dropdown-item
+        >
+        <b-dropdown-item
+          ><router-link
+            class="nav-link ml-5"
+            v-bind:class="{ active: $route.name == 'Conferences' }"
+            :to="{ name: 'Conferences' }"
+            >Conférences</router-link
+          ></b-dropdown-item
+        >
+      </b-nav-item-dropdown>
       <router-link
         class="nav-link ml-5"
-        v-bind:class="{ active: $route.name == 'Psy-conscience' }"
-        :to="{ name: 'Psy-Conscience' }"
-        >Psy-Conscience</router-link
+        v-bind:class="{ active: $route.name == 'Recherche' }"
+        :to="{ name: 'Recherche' }"
+        >Projet de recherche</router-link
       >
       <router-link
         class="nav-link ml-5"

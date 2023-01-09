@@ -1,13 +1,15 @@
 import { createWebHistory, createRouter } from "vue-router";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/firebase/firebaseInit";
 import routes from "./routes";
+//import { onAuthStateChanged } from "firebase/auth";
+//import { auth } from "@/firebase/firebaseInit";
 
 const router = createRouter({
   history: createWebHistory(),
   base: process.env.BASE_URL,
   routes,
 });
+
+// À décommenter si besoin d'une route protégée
 
 /* const getCurrentUser = () => {
   return new Promise((resolve, reject) => {

@@ -1,6 +1,6 @@
 <template>
   <div>
     <router-view />
-    <h1>Blog</h1>
+    <p class="ml-5 mt-5">Blog</p>
   </div>
 </template>

@@ -1,5 +1,8 @@
 import Home from "@/views/Home.vue";
-import PsyConscience from "@/views/Psy-Conscience.vue";
+import Ateliers from "@/views/Psy-Conscience/Ateliers.vue";
+import SouperCauserie from "@/views/Psy-Conscience/SoupersCauserie.vue";
+import Conferences from "@/views/Psy-Conscience/Conferences.vue";
+import Recherche from "@/views/Conferences.vue";
 import Blog from "@/views/Blog.vue";
 import About from "@/views/About.vue";
 import Login from "@/views/Login.vue";
@@ -13,9 +16,24 @@ export default [
     component: Home,
   },
   {
-    path: "/psy-conscience",
-    name: "Psy-Conscience",
+    path: "/ateliers",
+    name: "Ateliers",
     component: PsyConscience,
+  },
+  {
+    path: "/souper-causerie",
+    name: "SouperCauserie",
+    component: SouperCauserie,
+  },
+  {
+    path: "/conferences",
+    name: "Conferences",
+    component: Conferences,
+  },
+  {
+    path: "/recherche",
+    name: "Recherche",
+    component: Recherche,
   },
   {
     path: "/blog",
