@@ -1,8 +1,8 @@
 import Home from "@/views/Home.vue";
-import Ateliers from "@/views/Psy-Conscience/Ateliers.vue";
-import SouperCauserie from "@/views/Psy-Conscience/SoupersCauserie.vue";
-import Conferences from "@/views/Psy-Conscience/Conferences.vue";
-import Recherche from "@/views/Conferences.vue";
+import Ateliers from "@/views/Activites/Ateliers.vue";
+import SouperCauserie from "@/views/Activites/SoupersCauserie.vue";
+import Conferences from "@/views/Activites/Conferences.vue";
+import Recherche from "@/views/Recherche.vue";
 import Blog from "@/views/Blog.vue";
 import About from "@/views/About.vue";
 import Login from "@/views/Login.vue";
@@ -18,7 +18,7 @@ export default [
   {
     path: "/ateliers",
     name: "Ateliers",
-    component: PsyConscience,
+    component: Ateliers,
   },
   {
     path: "/souper-causerie",

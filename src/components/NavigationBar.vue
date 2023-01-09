@@ -14,15 +14,9 @@
         :to="{ name: 'Blog' }"
         >Blog</router-link
       >
-      <b-nav-item-dropdown
-        id="my-nav-dropdown"
-        text="Activités"
-        toggle-class="nav-link-custom"
-        right
-      >
+      <b-nav-item-dropdown text="Activités" class="ml-5">
         <b-dropdown-item
           ><router-link
-            class="nav-link ml-5"
             v-bind:class="{ active: $route.name == 'Ateliers' }"
             :to="{ name: 'Ateliers' }"
             >Ateliers</router-link
@@ -30,7 +24,6 @@
         >
         <b-dropdown-item
           ><router-link
-            class="nav-link ml-5"
             v-bind:class="{ active: $route.name == 'SouperCauserie' }"
             :to="{ name: 'SouperCauserie' }"
             >Soupers Causerie</router-link
@@ -38,7 +31,6 @@
         >
         <b-dropdown-item
           ><router-link
-            class="nav-link ml-5"
             v-bind:class="{ active: $route.name == 'Conferences' }"
             :to="{ name: 'Conferences' }"
             >Conférences</router-link

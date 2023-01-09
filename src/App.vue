@@ -10,7 +10,7 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #165ba0;
+  color: #000000;
 }
 </style>
 
