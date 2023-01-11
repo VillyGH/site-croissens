@@ -36,4 +36,8 @@ router.beforeEach(async (to, from, next) => {
   }
 }); */
 
+router.afterEach(async (to, from, next) => {
+  document.title = "Psy-Conscience - " + router.currentRoute.value.name;
+});
+
 export default router;

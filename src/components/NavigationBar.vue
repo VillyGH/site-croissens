@@ -1,11 +1,11 @@
 <template>
   <img src="../assets/img/logo.jpg" alt="Logo Croissens" />
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark">
     <div class="navbar-nav mr-auto">
       <router-link
         class="nav-link"
-        v-bind:class="{ active: $route.name == 'Home' }"
-        :to="{ name: 'Home' }"
+        v-bind:class="{ active: $route.name == 'Accueil' }"
+        :to="{ name: 'Accueil' }"
         >Accueil</router-link
       >
       <router-link
@@ -24,15 +24,15 @@
         >
         <b-dropdown-item
           ><router-link
-            v-bind:class="{ active: $route.name == 'SouperCauserie' }"
-            :to="{ name: 'SouperCauserie' }"
+            v-bind:class="{ active: $route.name == 'Souper Causerie' }"
+            :to="{ name: 'Souper Causerie' }"
             >Soupers Causerie</router-link
           ></b-dropdown-item
         >
         <b-dropdown-item
           ><router-link
-            v-bind:class="{ active: $route.name == 'Conferences' }"
-            :to="{ name: 'Conferences' }"
+            v-bind:class="{ active: $route.name == 'Conférences' }"
+            :to="{ name: 'Conférences' }"
             >Conférences</router-link
           ></b-dropdown-item
         >
@@ -45,8 +45,8 @@
       >
       <router-link
         class="nav-link ml-5"
-        v-bind:class="{ active: $route.name == 'About' }"
-        :to="{ name: 'About' }"
+        v-bind:class="{ active: $route.name == 'À Propos' }"
+        :to="{ name: 'À Propos' }"
         >À propos</router-link
       >
     </div>
@@ -57,17 +57,17 @@
 
       <router-link
         class="nav-link"
-        v-bind:class="{ active: $route.name == 'Login' }"
+        v-bind:class="{ active: $route.name == 'Connexion' }"
         v-else
-        :to="{ name: 'Login' }"
+        :to="{ name: 'Connexion' }"
       >
         Connexion
       </router-link>
       <router-link
         class="nav-link"
-        v-bind:class="{ active: $route.name == 'Register' }"
+        v-bind:class="{ active: $route.name == 'Inscription' }"
         v-if="!isLoggedIn"
-        :to="{ name: 'Register' }"
+        :to="{ name: 'Inscription' }"
       >
         Inscription
       </router-link>

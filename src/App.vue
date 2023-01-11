@@ -1,18 +1,12 @@
 <template>
   <div>
+    <video autoplay muted id="backgroundvid">
+      <source src="./assets/background.mp4" type="video/mp4" />
+    </video>
     <NavigationBar />
     <router-view />
   </div>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #000000;
-}
-</style>
 
 <script>
 import NavigationBar from "@/components/NavigationBar";

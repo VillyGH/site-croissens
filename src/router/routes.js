@@ -1,33 +1,36 @@
-import Home from "@/views/Home.vue";
+import Accueil from "@/views/Accueil.vue";
 import Ateliers from "@/views/Activites/Ateliers.vue";
 import SouperCauserie from "@/views/Activites/SoupersCauserie.vue";
 import Conferences from "@/views/Activites/Conferences.vue";
 import Recherche from "@/views/Recherche.vue";
 import Blog from "@/views/Blog.vue";
-import About from "@/views/About.vue";
-import Login from "@/views/Login.vue";
-import Register from "@/views/Register.vue";
+import ÀPropos from "@/views/ÀPropos.vue";
+import Connexion from "@/views/Connexion.vue";
+import Inscription from "@/views/Inscription.vue";
 import PageNotFound from "@/views/PageNotFound.vue";
 
 export default [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Accueil",
+    component: Accueil,
   },
   {
     path: "/ateliers",
     name: "Ateliers",
     component: Ateliers,
+    metaInfo: {
+      title: "Psy-conscience - Ateliers",
+    },
   },
   {
     path: "/souper-causerie",
-    name: "SouperCauserie",
+    name: "Souper Causerie",
     component: SouperCauserie,
   },
   {
     path: "/conferences",
-    name: "Conferences",
+    name: "Conférences",
     component: Conferences,
   },
   {
@@ -41,22 +44,22 @@ export default [
     component: Blog,
   },
   {
-    path: "/about",
-    name: "About",
-    component: About,
+    path: "/apropos",
+    name: "À Propos",
+    component: ÀPropos,
   },
   {
-    path: "/login",
-    name: "Login",
-    component: Login,
+    path: "/connexion",
+    name: "Connexion",
+    component: Connexion,
     meta: {
       authPage: true,
     },
   },
   {
-    path: "/register",
-    name: "Register",
-    component: Register,
+    path: "/inscription",
+    name: "Inscription",
+    component: Inscription,
     meta: {
       authPage: true,
     },

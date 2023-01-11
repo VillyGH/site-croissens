@@ -49,7 +49,7 @@ const login = () => {
     .then((data) => {
       console.log("L'utilisateur a été enregistré avec succès !");
       router.push({
-        name: "Home",
+        name: "Accueil",
       });
     })
     .catch((error) => {
@@ -76,7 +76,7 @@ const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then((result) => {
-      router.push({ name: "Login" });
+      router.push({ name: "Connexion" });
     })
     .catch((error) => {});
 };

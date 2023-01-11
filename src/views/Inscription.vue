@@ -99,7 +99,7 @@ const register = async () => {
         console.log("L'utilisateur a été enregistré avec succès !");
         await createUserNameDB();
         router.push({
-          name: "Home",
+          name: "Accueil",
         });
       })
       .catch((error) => {
@@ -141,7 +141,7 @@ const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then((result) => {
-      router.push({ name: "Home" });
+      router.push({ name: "Accueil" });
     })
     .catch((error) => {});
 };
