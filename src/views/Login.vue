@@ -32,11 +32,11 @@
 <script setup>
 import { useRouter } from "vue-router";
 import {
-  getAuth,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
 } from "@firebase/auth";
+import { auth } from "@/firebase/firebaseInit";
 import { ref } from "vue";
 
 const email = ref("");
@@ -45,7 +45,7 @@ let errorMessage = ref();
 const router = useRouter();
 
 const login = () => {
-  signInWithEmailAndPassword(getAuth(), email.value, password.value)
+  signInWithEmailAndPassword(auth, email.value, password.value)
     .then((data) => {
       console.log("L'utilisateur a été enregistré avec succès !");
       router.push({
@@ -66,7 +66,7 @@ const login = () => {
           break;
         default:
           errorMessage.value =
-            "Combinaison de mot de passe et d'adresse courriel invalide";
+            "Une erreur s'est produite veuillez réessayer ultérieurement";
           break;
       }
     });
@@ -74,7 +74,7 @@ const login = () => {
 
 const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
-  signInWithPopup(getAuth(), provider)
+  signInWithPopup(auth, provider)
     .then((result) => {
       router.push({ name: "Login" });
     })

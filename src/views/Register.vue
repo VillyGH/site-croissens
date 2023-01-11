@@ -17,6 +17,7 @@
           id="email"
           required
           v-model="email"
+          @input="verifyUsername"
           placeholder="Adresse courriel"
           type="text"
         />
@@ -26,6 +27,7 @@
           id="password"
           required
           v-model="password"
+          @input="verifyUsername"
           placeholder="Mot de passe"
           type="password"
         />
@@ -50,7 +52,7 @@ import {
 } from "@firebase/auth";
 import { db, auth } from "@/firebase/firebaseInit";
 import { ref } from "vue";
-import { doc, getDoc } from "@firebase/firestore";
+import { doc, writeBatch, getDoc } from "@firebase/firestore";
 
 const username = ref("");
 const email = ref("");
@@ -95,41 +97,40 @@ const register = async () => {
     createUserWithEmailAndPassword(auth, email.value, password.value)
       .then(async (data) => {
         console.log("L'utilisateur a été enregistré avec succès !");
+        await createUserNameDB();
+        router.push({
+          name: "Home",
+        });
       })
       .catch((error) => {
         switch (error.code) {
           case "auth/invalid-email":
             errorMessage.value = "Adresse courriel invalide";
             break;
-          case "auth/user-not-found":
-            errorMessage.value =
-              "Aucun compte avec cette adresse courriel a été trouvé";
+          case "auth/email-already-in-use":
+            errorMessage.value = "Adresse courriel déjà utilisée";
             break;
-          case "auth/wrong-password":
-            errorMessage.value = "Mot de passe invalide";
+          case "auth/invalid-password":
+            errorMessage.value = "Le mot de passe est invalide";
+            break;
+          case "auth/weak-password":
+            errorMessage.value =
+              "Le mot de passe doit comporter au moins 6 caractères";
             break;
           default:
-            errorMessage.value = "L'adresse courriel est déjà utilisée";
+            errorMessage.value = "Erreur: " + error.code;
             break;
         }
         updateState();
-      })
-      .finally(async () => {
-        await createUserNameDB();
-        router.push({
-          name: "Home",
-        });
       });
   }
 };
 
 const createUserNameDB = async () => {
-  // Create refs for both documents
   const userDoc = doc(db, `users`, auth.currentUser.uid);
   const usernameDoc = doc(db, `usernames`, username.value);
 
-  // Commit both docs together as a batch write.
-  const batch = db.batch();
+  const batch = writeBatch(db);
   batch.set(userDoc, { name: username.value });
   batch.set(usernameDoc, { uid: auth.currentUser.uid });
 
@@ -140,7 +141,7 @@ const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then((result) => {
-      router.push({ name: "Login" });
+      router.push({ name: "Home" });
     })
     .catch((error) => {});
 };

@@ -41,7 +41,7 @@
         class="nav-link ml-5"
         v-bind:class="{ active: $route.name == 'Recherche' }"
         :to="{ name: 'Recherche' }"
-        >Projet de recherche</router-link
+        >Recherche</router-link
       >
       <router-link
         class="nav-link ml-5"
