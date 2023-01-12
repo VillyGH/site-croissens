@@ -10,9 +10,9 @@
       >
       <router-link
         class="nav-link ml-5"
-        v-bind:class="{ active: $route.name == 'Blog' }"
-        :to="{ name: 'Blog' }"
-        >Blog</router-link
+        v-bind:class="{ active: $route.name == 'Blogue' }"
+        :to="{ name: 'Blogue' }"
+        >Blogue</router-link
       >
       <b-nav-item-dropdown text="Activités" class="ml-5">
         <b-dropdown-item
@@ -23,18 +23,14 @@
           ></b-dropdown-item
         >
         <b-dropdown-item
-          ><router-link
-            v-bind:class="{ active: $route.name == 'Souper Causerie' }"
-            :to="{ name: 'Souper Causerie' }"
-            >Soupers Causerie</router-link
-          ></b-dropdown-item
+          v-bind:class="{ active: $route.name == 'Échanges Intéractifs' }"
+          :to="{ name: 'Échanges Intéractifs' }"
+          >Échanges Intéractifs</b-dropdown-item
         >
         <b-dropdown-item
-          ><router-link
-            v-bind:class="{ active: $route.name == 'Conférences' }"
-            :to="{ name: 'Conférences' }"
-            >Conférences</router-link
-          ></b-dropdown-item
+          v-bind:class="{ active: $route.name == 'Conférences' }"
+          :to="{ name: 'Conférences' }"
+          >Conférences</b-dropdown-item
         >
       </b-nav-item-dropdown>
       <router-link
@@ -45,14 +41,14 @@
       >
       <router-link
         class="nav-link ml-5"
-        v-bind:class="{ active: $route.name == 'À Propos' }"
-        :to="{ name: 'À Propos' }"
+        v-bind:class="{ active: $route.name == 'À propos' }"
+        :to="{ name: 'À propos' }"
         >À propos</router-link
       >
       <router-link
         class="nav-link ml-5"
-        v-bind:class="{ active: $route.name == 'Nous Joindre' }"
-        :to="{ name: 'Nous Joindre' }"
+        v-bind:class="{ active: $route.name == 'Nous joindre' }"
+        :to="{ name: 'Nous joindre' }"
         >Nous Joindre</router-link
       >
     </b-navbar-nav>
@@ -62,7 +58,7 @@
       </b-link>
 
       <router-link
-        class="nav-link"
+        class="nav-link mr-4"
         v-bind:class="{ active: $route.name == 'Connexion' }"
         v-else
         :to="{ name: 'Connexion' }"
@@ -70,7 +66,7 @@
         Connexion
       </router-link>
       <router-link
-        class="nav-link"
+        class="nav-link mr-4"
         v-bind:class="{ active: $route.name == 'Inscription' }"
         v-if="!isLoggedIn"
         :to="{ name: 'Inscription' }"

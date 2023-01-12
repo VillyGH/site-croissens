@@ -1,9 +1,9 @@
 import Accueil from "@/views/Accueil.vue";
 import Ateliers from "@/views/Activites/Ateliers.vue";
-import SouperCauserie from "@/views/Activites/SoupersCauserie.vue";
+import EchangesInteractifs from "@/views/Activites/EchangesInteractifs.vue";
 import Conferences from "@/views/Activites/Conferences.vue";
 import Recherche from "@/views/Recherche.vue";
-import Blog from "@/views/Blog.vue";
+import Blogue from "@/views/Blogue.vue";
 import ÀPropos from "@/views/ÀPropos.vue";
 import Contact from "@/views/Contact.vue";
 import Connexion from "@/views/Connexion.vue";
@@ -22,9 +22,9 @@ export default [
     component: Ateliers,
   },
   {
-    path: "/souper-causerie",
-    name: "Souper Causerie",
-    component: SouperCauserie,
+    path: "/echanges-interactifs",
+    name: "Échanges Intéractifs",
+    component: EchangesInteractifs,
   },
   {
     path: "/conferences",
@@ -37,18 +37,18 @@ export default [
     component: Recherche,
   },
   {
-    path: "/blog",
-    name: "Blog",
-    component: Blog,
+    path: "/blogue",
+    name: "Blogue",
+    component: Blogue,
   },
   {
     path: "/apropos",
-    name: "À Propos",
+    name: "À propos",
     component: ÀPropos,
   },
   {
     path: "/contact",
-    name: "Nous Joindre",
+    name: "Nous joindre",
     component: Contact,
   },
   {

@@ -41,7 +41,7 @@ import { ref } from "vue";
 
 const email = ref("");
 const password = ref("");
-let errorMessage = ref();
+const errorMessage = ref();
 const router = useRouter();
 
 const login = () => {
