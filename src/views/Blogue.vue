@@ -54,11 +54,10 @@ const createComment = async () => {
       owner: auth.currentUser.uid,
       text: comment.value,
     };
-
-    const commentCol = collection(db, `comments`);
-    await addDoc(commentCol, commentData);
-    errorMessage.value = "";
+    await addDoc(collection(db, `comments`), commentData);
     successMessage.value = "Le commentaire a bien été publié !";
+    errorMessage.value = "";
+    comment.value = "";
   } else {
     errorMessage.value = "Le commentaire doit avoir entre 3 et 450 caractères";
   }
