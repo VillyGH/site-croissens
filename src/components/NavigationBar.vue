@@ -1,7 +1,7 @@
 <template>
   <img src="../assets/img/logo.jpg" alt="Logo Croissens" />
-  <nav class="navbar navbar-expand-md navbar-dark">
-    <div class="navbar-nav mr-auto">
+  <b-navbar type="light">
+    <b-navbar-nav>
       <router-link
         class="nav-link"
         v-bind:class="{ active: $route.name == 'Accueil' }"
@@ -49,7 +49,13 @@
         :to="{ name: 'À Propos' }"
         >À propos</router-link
       >
-    </div>
+      <router-link
+        class="nav-link ml-5"
+        v-bind:class="{ active: $route.name == 'Nous Joindre' }"
+        :to="{ name: 'Nous Joindre' }"
+        >Nous Joindre</router-link
+      >
+    </b-navbar-nav>
     <div class="navbar-nav ml-auto">
       <b-link @click="logOut" v-if="isLoggedIn" class="nav-link logout">
         Se déconnecter
@@ -72,7 +78,7 @@
         Inscription
       </router-link>
     </div>
-  </nav>
+  </b-navbar>
 </template>
 
 <script setup>

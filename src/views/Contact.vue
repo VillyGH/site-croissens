@@ -1,6 +1,6 @@
 <template>
   <div>
     <router-view />
-    <h1>Prise de rendez-vous</h1>
+    <h1 class="ml-5 mt-5">Nous joindre</h1>
   </div>
 </template>

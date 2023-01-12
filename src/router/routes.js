@@ -5,6 +5,7 @@ import Conferences from "@/views/Activites/Conferences.vue";
 import Recherche from "@/views/Recherche.vue";
 import Blog from "@/views/Blog.vue";
 import ÀPropos from "@/views/ÀPropos.vue";
+import Contact from "@/views/Contact.vue";
 import Connexion from "@/views/Connexion.vue";
 import Inscription from "@/views/Inscription.vue";
 import PageNotFound from "@/views/PageNotFound.vue";
@@ -19,9 +20,6 @@ export default [
     path: "/ateliers",
     name: "Ateliers",
     component: Ateliers,
-    metaInfo: {
-      title: "Psy-conscience - Ateliers",
-    },
   },
   {
     path: "/souper-causerie",
@@ -47,6 +45,11 @@ export default [
     path: "/apropos",
     name: "À Propos",
     component: ÀPropos,
+  },
+  {
+    path: "/contact",
+    name: "Nous Joindre",
+    component: Contact,
   },
   {
     path: "/connexion",
