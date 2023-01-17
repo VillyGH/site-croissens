@@ -1,69 +1,63 @@
 <template>
-  <div>
-    <router-view />
-    <div class="ml-5 mt-5">
-      <h1 class="text-center">Blogue</h1>
-      <b-col sm="4">
-        <h3>Ajouter un Commentaire</h3>
-        <div v-if="isLoggedIn">
-          <b-form-textarea
-            sm="2"
-            v-model="createdComment"
-            placeholder="Écrire un commentaire"
-            rows="5"
-            max-rows="6"
-          ></b-form-textarea>
-          <b-button @click="createComment" variant="primary" class="mt-4"
-            >Envoyer</b-button
-          >
-          <span class="text-success">{{ successMessage }}</span>
-        </div>
-        <div v-else>
-          <h5>Vous devez être connecté pour publier un commentaire</h5>
-        </div>
-        <div class="mt-4 text-danger">{{ errorMessage }}</div>
-        <h3 v-if="comments.length != 0">{{ comments.length }} Commentaires</h3>
-        <h3 v-else>Aucun Commentaire</h3>
-        <div class="mb-6" v-bind:key="comment" v-for="comment in comments">
-          <div>{{ comment.owner }}</div>
-          <div>
-            <span v-if="comment.modified">Modifié </span>
-            {{ moment(comment.date).fromNow() }}
-          </div>
-          <div class="mb-4">
-            <textarea
-              v-model="comment.text"
-              class="input-message mt-3"
-              id="comment"
-              rows="1"
-              cols="45"
-              required
-              v-bind:disabled="editedCommentId != comment.id"
-            ></textarea>
-            <a
-              v-if="isLoggedIn && comment.owner == username"
-              @click="changeEditMode(comment.id)"
-              class="ml-4"
-              ><b-icon-pencil-square
-                style="vertical-align: 0.5em"
-              ></b-icon-pencil-square>
-            </a>
-            <div>
-              <b-button
-                @click="editComment(comment)"
-                variant="primary"
-                class="mt-2"
-                id="confirmEditBtn"
-                v-bind:hidden="editedCommentId != comment.id"
-                >Confirmer</b-button
-              >
-            </div>
-            <div class="mt-4 text-danger">{{ editErrorMessage }}</div>
-          </div>
-        </div>
-      </b-col>
+  <b-col sm="4">
+    <h3>Ajouter un Commentaire</h3>
+    <div v-if="isLoggedIn">
+      <b-form-textarea
+        sm="2"
+        v-model="createdComment"
+        placeholder="Écrire un commentaire"
+        rows="5"
+        max-rows="6"
+      ></b-form-textarea>
+      <b-button @click="createComment" variant="primary" class="mt-4"
+        >Envoyer</b-button
+      >
+      <span class="text-success">{{ successMessage }}</span>
     </div>
-  </div>
+    <div v-else>
+      <h5>Vous devez être connecté pour publier un commentaire</h5>
+    </div>
+    <div class="mt-4 text-danger">{{ errorMessage }}</div>
+    <h3 v-if="comments.length != 0">{{ comments.length }} Commentaires</h3>
+    <h3 v-else>Aucun Commentaire</h3>
+    <div class="mb-6" v-bind:key="comment" v-for="comment in comments">
+      <div>{{ comment.owner }}</div>
+      <div>
+        <span v-if="comment.modified">Modifié </span>
+        {{ moment(comment.date).fromNow() }}
+      </div>
+      <div class="mb-4">
+        <textarea
+          v-model="comment.text"
+          class="input-message mt-3"
+          id="comment"
+          rows="1"
+          cols="45"
+          required
+          v-bind:disabled="editedCommentId != comment.id"
+        ></textarea>
+        <a
+          v-if="isLoggedIn && comment.owner == username"
+          @click="changeEditMode(comment.id)"
+          class="ml-4"
+          ><b-icon-pencil-square
+            style="vertical-align: 0.5em"
+          ></b-icon-pencil-square>
+        </a>
+        <div>
+          <b-button
+            @click="editComment(comment)"
+            variant="primary"
+            class="mt-2"
+            id="confirmEditBtn"
+            v-bind:hidden="editedCommentId != comment.id"
+            >Confirmer</b-button
+          >
+        </div>
+        <div class="mt-4 text-danger">{{ editErrorMessage }}</div>
+      </div>
+    </div>
+  </b-col>
 </template>
 
 <script setup>

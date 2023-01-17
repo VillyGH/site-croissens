@@ -3,7 +3,9 @@ import Ateliers from "@/views/Activites/Ateliers.vue";
 import EchangesInteractifs from "@/views/Activites/EchangesInteractifs.vue";
 import Conferences from "@/views/Activites/Conferences.vue";
 import Recherche from "@/views/Recherche.vue";
-import Blogue from "@/views/Blogue.vue";
+import Blogue from "@/views/Blogue/Blogue.vue";
+import CategorieArticle from "@/views/Blogue/CategorieArticle.vue";
+import Article from "@/views/Blogue/Article.vue";
 import ÀPropos from "@/views/ÀPropos.vue";
 import Contact from "@/views/Contact.vue";
 import Connexion from "@/views/Connexion.vue";
@@ -40,6 +42,16 @@ export default [
     path: "/blogue",
     name: "Blogue",
     component: Blogue,
+  },
+  {
+    path: "/categorie-article/:name",
+    name: "Categorie Article",
+    component: CategorieArticle,
+  },
+  {
+    path: "/article/:id",
+    name: "Article",
+    component: Article,
   },
   {
     path: "/apropos",

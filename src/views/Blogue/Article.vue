@@ -1,0 +1,39 @@
+<template>
+  <div>
+    <router-view />
+    <div class="ml-5 mt-5">
+      <h1 class="text-center">{{ article.name }}</h1>
+      <img
+        class="categorieArticleImg"
+        v-bind:src="article.image"
+        v-bind:alt="'Image de la catégorie ' + article.name"
+      />
+      <div class="mt-4 text-secondary">{{ article.description }}</div>
+      <div class="mt-4 justify-text">{{ article.text }}</div>
+      <Comments />
+    </div>
+  </div>
+</template>
+
+<script setup>
+import Comments from "@/components/Comments.vue";
+import { useRoute } from "vue-router";
+import { doc, getDoc } from "@firebase/firestore";
+import { db } from "@/firebase/firebaseInit";
+import { onMounted, ref } from "vue";
+
+const route = useRoute();
+const article = ref({});
+
+onMounted(async () => {
+  Comments;
+  await loadArticle();
+});
+
+const loadArticle = async () => {
+  const articleDoc = await getDoc(doc(db, "articles", route.params.id));
+  if (articleDoc.exists()) {
+    article.value = articleDoc.data();
+  }
+};
+</script>
