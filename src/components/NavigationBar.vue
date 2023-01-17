@@ -16,11 +16,9 @@
       >
       <b-nav-item-dropdown text="Activités" class="ml-5">
         <b-dropdown-item
-          ><router-link
-            v-bind:class="{ active: $route.name == 'Ateliers' }"
-            :to="{ name: 'Ateliers' }"
-            >Ateliers</router-link
-          ></b-dropdown-item
+          v-bind:class="{ active: $route.name == 'Ateliers' }"
+          :to="{ name: 'Ateliers' }"
+          >Ateliers</b-dropdown-item
         >
         <b-dropdown-item
           v-bind:class="{ active: $route.name == 'Échanges Intéractifs' }"

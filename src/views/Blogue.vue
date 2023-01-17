@@ -44,7 +44,9 @@
               v-if="isLoggedIn && comment.owner == username"
               @click="changeEditMode(comment.id)"
               class="ml-4"
-              ><b-icon-pencil-square></b-icon-pencil-square>
+              ><b-icon-pencil-square
+                style="vertical-align: 0.5em"
+              ></b-icon-pencil-square>
             </a>
             <div>
               <b-button
