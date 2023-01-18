@@ -46,8 +46,8 @@
       <router-link
         class="nav-link ml-5"
         v-bind:class="{ active: $route.name == 'Nous joindre' }"
-        :to="{ name: 'Nous joindre' }"
-        >Nous Joindre</router-link
+        :to="{ name: 'Me joindre' }"
+        >Me Joindre</router-link
       >
     </b-navbar-nav>
     <div class="navbar-nav ml-auto">

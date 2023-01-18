@@ -60,7 +60,7 @@ export default [
   },
   {
     path: "/contact",
-    name: "Nous joindre",
+    name: "Me joindre",
     component: Contact,
   },
   {
