@@ -22,7 +22,7 @@
           </b-link>
         </div>
 
-        <div class="mt-4 text-secondary">{{ category.description }}</div>
+        <div class="mt-4">{{ category.description }}</div>
       </div>
     </div>
   </div>

@@ -21,7 +21,7 @@
           </b-link>
         </div>
 
-        <div class="mt-4 text-secondary">{{ article.description }}</div>
+        <div class="mt-4">{{ article.description }}</div>
       </div>
     </div>
   </div>
