@@ -1,6 +1,6 @@
 <template>
   <b-col sm="4">
-    <h3>Ajouter un Commentaire</h3>
+    <h3 class="mt-5">Ajouter un Commentaire</h3>
     <div v-if="isLoggedIn">
       <b-form-textarea
         sm="2"
@@ -19,7 +19,6 @@
     </div>
     <div class="mt-4 text-danger">{{ errorMessage }}</div>
     <h3 v-if="comments.length != 0">{{ comments.length }} Commentaires</h3>
-    <h3 v-else>Aucun Commentaire</h3>
     <div class="mb-6" v-bind:key="comment" v-for="comment in comments">
       <div>{{ comment.owner }}</div>
       <div>
@@ -53,6 +52,14 @@
             v-bind:hidden="editedCommentId != comment.id"
             >Confirmer</b-button
           >
+          <b-button
+            @click="changeEditMode(comment.id)"
+            variant="secondary"
+            class="mt-2"
+            id="confirmEditBtn"
+            v-bind:hidden="editedCommentId != comment.id"
+            >Annuler</b-button
+          >
         </div>
         <div class="mt-4 text-danger">{{ editErrorMessage }}</div>
       </div>
@@ -71,6 +78,7 @@ import {
   getDoc,
   getDocs,
   query,
+  where,
 } from "@firebase/firestore";
 import { onAuthStateChanged } from "@firebase/auth";
 import moment from "moment";
@@ -83,6 +91,9 @@ const editErrorMessage = ref("");
 const comments = ref([]);
 const username = ref("");
 const editedCommentId = ref("");
+
+const props = defineProps(["articleId"]);
+
 onMounted(async () => {
   moment.locale("fr");
   onAuthStateChanged(auth, (user) => {
@@ -102,6 +113,7 @@ const createComment = async () => {
       date: moment().format("MMMM Do YYYY, HH:mm:ss"),
       owner: username.value,
       text: createdComment.value,
+      article: props.articleId,
     };
     await addDoc(collection(db, `comments`), commentData);
     successMessage.value = "Le commentaire a bien été publié !";
@@ -145,7 +157,9 @@ const getCurrentUsername = async () => {
 };
 
 const loadComments = async () => {
-  const querySnapshot = await getDocs(query(collection(db, "comments")));
+  const querySnapshot = await getDocs(
+    query(collection(db, "comments"), where("article", "==", props.articleId))
+  );
   querySnapshot.forEach((doc) => {
     const newDoc = doc.data();
     newDoc.id = doc.id;

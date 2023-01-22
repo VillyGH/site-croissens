@@ -1,6 +1,48 @@
 <template>
   <div>
     <router-view />
-    <p class="ml-5 mt-5">Conférences</p>
+    <div class="ml-5 mt-5">
+      <div v-bind:key="conference" v-for="conference in conferences">
+        <div>
+          <img
+            v-bind:src="conference.image"
+            v-bind:alt="'Image de la conférence ' + conference.name"
+          />
+        </div>
+        <div class="mt-4">
+          <b-link class="text-primary" style="text-decoration: none">
+            {{ conference.name }}
+          </b-link>
+        </div>
+        <div class="mt-4">{{ conference.description }}</div>
+        <div class="mt-4">{{ conference.durée }}</div>
+      </div>
+    </div>
   </div>
 </template>
+
+<script setup>
+import { useRoute } from "vue-router";
+import { collection, getDocs, query } from "@firebase/firestore";
+import { db } from "@/firebase/firebaseInit";
+import { onMounted, ref } from "vue";
+import moment from "moment";
+
+const route = useRoute();
+const conferences = ref([]);
+
+onMounted(async () => {
+  await loadConferences();
+});
+
+const loadConferences = async () => {
+  const querySnapshot = await getDocs(query(collection(db, "conferences")));
+  querySnapshot.forEach((doc) => {
+    const newDoc = doc.data();
+    if (newDoc.date > moment().format("MMMM Do YYYY, HH:mm:ss")) {
+      newDoc.id = doc.id;
+      conferences.value.push(newDoc);
+    }
+  });
+};
+</script>

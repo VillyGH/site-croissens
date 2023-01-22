@@ -10,7 +10,7 @@
       />
       <div class="mt-4 text-secondary">{{ article.description }}</div>
       <div class="mt-4 justify-text">{{ article.text }}</div>
-      <Comments />
+      <Comments articleId="route.params.id" />
     </div>
   </div>
 </template>
@@ -26,7 +26,6 @@ const route = useRoute();
 const article = ref({});
 
 onMounted(async () => {
-  Comments;
   await loadArticle();
 });
 
