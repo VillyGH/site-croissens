@@ -15,7 +15,7 @@
           </b-link>
         </div>
         <div class="mt-4">{{ conference.description }}</div>
-        <div class="mt-4">{{ conference.durée }}</div>
+        <div class="mt-4">Durée : {{ conference.duration }}</div>
       </div>
     </div>
   </div>

@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <video autoplay muted id="backgroundvid">
-      <source src="./assets/background.mp4" type="video/mp4" />
-    </video>
+  <div class="background">
     <NavigationBar />
     <main>
       <router-view />
