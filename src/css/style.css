@@ -15,17 +15,41 @@
   z-index: -1;
 }
 
-.background {
-  background-image: url("../assets/img/background.jpg");
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
+body {
+  background: url("../assets/img/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: #464646;
   z-index: -1;
 }
 
 .categorieArticleImg {
   width: 300px;
   height: 300px;
+}
+
+.card {
+  max-width: 20rem;
+  cursor: pointer;
+  background-color: #f79999;
+}
+
+.card > img {
+  height: 300px;
+}
+
+.card-body {
+  padding: 1em;
+}
+
+.white-col {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 50%;
 }

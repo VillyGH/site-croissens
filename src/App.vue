@@ -1,11 +1,7 @@
 <template>
-  <div class="background">
-    <NavigationBar />
-    <main>
-      <router-view />
-    </main>
-    <BottomNav />
-  </div>
+  <NavigationBar />
+  <router-view />
+  <BottomNav />
 </template>
 
 <script>

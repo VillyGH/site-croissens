@@ -3,25 +3,24 @@
   <div class="ml-5 mt-5">
     <h1 class="text-center">Blogue</h1>
     <h3>Catégories d'article</h3>
-    <div v-bind:key="category" v-for="category in articleCategories">
-      <div @click="goToCategory(category.name)" class="categorieArticleImg">
-        <img
-          class="categorieArticleImg"
-          v-bind:src="category.image"
-          v-bind:alt="'Image de la catégorie ' + category.name"
-        />
-      </div>
-      <div class="mt-4">
-        <b-link
-          class="text-primary"
+    <div style="display: flex; flex-direction: row; align-items: flex-start">
+      <div
+        class="ml-5"
+        v-bind:key="category"
+        v-for="category in articleCategories"
+      >
+        <b-card
           @click="goToCategory(category.name)"
-          style="text-decoration: none"
+          v-bind:title="category.name"
+          v-bind:img-src="category.image"
+          v-bind:img-alt="'Image de la catégorie ' + category.name"
+          class="mt-5 mb-2 card"
         >
-          {{ category.name }}
-        </b-link>
+          <b-card-text class="mt-4">
+            {{ category.description }}
+          </b-card-text>
+        </b-card>
       </div>
-
-      <div class="mt-4">{{ category.description }}</div>
     </div>
   </div>
 </template>
@@ -45,6 +44,9 @@ const loadCategories = async () => {
     const newDoc = doc.data();
     newDoc.id = doc.id;
     articleCategories.value.push(newDoc);
+  });
+  articleCategories.value.sort(function (a, b) {
+    return a.name > b.name ? 1 : a.name < b.name ? -1 : 0;
   });
 };
 
