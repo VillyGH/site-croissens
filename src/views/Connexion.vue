@@ -76,8 +76,25 @@ const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then((result) => {
-      router.push({ name: "Connexion" });
+      router.push({ name: "Accueil" });
     })
-    .catch((error) => {});
+    .catch((error) => {
+      switch (error.code) {
+        case "auth/invalid-email":
+          errorMessage.value = "Adresse courriel invalide";
+          break;
+        case "auth/user-not-found":
+          errorMessage.value =
+            "Aucun compte avec cette adresse courriel a été trouvé";
+          break;
+        case "auth/wrong-password":
+          errorMessage.value = "Mot de passe invalide";
+          break;
+        default:
+          errorMessage.value =
+            "Une erreur s'est produite veuillez réessayer ultérieurement";
+          break;
+      }
+    });
 };
 </script>
