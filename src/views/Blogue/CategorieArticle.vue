@@ -28,10 +28,11 @@
 </template>
 
 <script setup>
-import { useRouter, useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { db } from "@/firebase/firebaseInit";
 import { collection, getDocs, query, where } from "@firebase/firestore";
+
 const articles = ref([]);
 const router = useRouter();
 const route = useRoute();

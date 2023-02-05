@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import routes from "./routes";
 //import { onAuthStateChanged } from "firebase/auth";
 //import { auth } from "@/firebase/firebaseInit";

@@ -1,27 +1,26 @@
 #app {
   font-family: "Times New Roman", Times, serif, sans-serif;
-  font-size: 12;
+  font-size: 1em;
   font-weight: bold;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #000000;
 }
 #backgroundvid {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
   position: fixed;
+  left: 0;
   right: 0;
+  top: 0;
   bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
   z-index: -1;
 }
 
 body {
-  background: url("../assets/img/background.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
   background-size: cover;
-  background-color: #464646;
+  background: #464646 url("@/assets/img/background.jpg") no-repeat fixed center center;
   z-index: -1;
 }
 
@@ -48,8 +47,15 @@ body {
   background-color: rgba(255, 255, 255, 0.3);
 }
 
+.authContainer {
+  width: 30%;
+}
+
+.authButton {
+  display: inline;
+  text-align: center;
+}
+
 footer {
-  position: fixed;
   bottom: 0;
-  width: 50%;
 }

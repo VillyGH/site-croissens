@@ -33,10 +33,10 @@
           rows="1"
           cols="45"
           required
-          v-bind:disabled="editedCommentId != comment.id"
+          v-bind:disabled="editedCommentId !== comment.id"
         ></textarea>
         <a
-          v-if="isLoggedIn && comment.owner == username"
+          v-if="isLoggedIn && comment.owner === username"
           @click="changeEditMode(comment.id)"
           class="ml-4"
           ><b-icon-pencil-square
@@ -49,7 +49,7 @@
             variant="primary"
             class="mt-2"
             id="confirmEditBtn"
-            v-bind:hidden="editedCommentId != comment.id"
+            v-bind:hidden="editedCommentId !== comment.id"
             >Confirmer</b-button
           >
           <b-button
@@ -57,7 +57,7 @@
             variant="secondary"
             class="mt-2"
             id="confirmEditBtn"
-            v-bind:hidden="editedCommentId != comment.id"
+            v-bind:hidden="editedCommentId !== comment.id"
             >Annuler</b-button
           >
         </div>
@@ -70,16 +70,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { auth, db } from "@/firebase/firebaseInit";
-import {
-  addDoc,
-  updateDoc,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  where,
-} from "@firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "@firebase/firestore";
 import { onAuthStateChanged } from "@firebase/auth";
 import moment from "moment";
 
@@ -97,11 +88,7 @@ const props = defineProps(["articleId"]);
 onMounted(async () => {
   moment.locale("fr");
   onAuthStateChanged(auth, (user) => {
-    if (user) {
-      isLoggedIn.value = true;
-    } else {
-      isLoggedIn.value = false;
-    }
+    isLoggedIn.value = !!user;
   });
   await loadComments();
   username.value = await getCurrentUsername();
@@ -142,7 +129,7 @@ const editComment = async (comment) => {
 };
 
 const changeEditMode = async (id) => {
-  if (editedCommentId.value == "") {
+  if (editedCommentId.value === "") {
     editedCommentId.value = id;
   } else {
     editedCommentId.value = "";

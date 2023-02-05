@@ -30,6 +30,7 @@ import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { db } from "@/firebase/firebaseInit";
 import { collection, getDocs, query } from "@firebase/firestore";
+
 const articleCategories = ref([]);
 const router = useRouter();
 onMounted(async () => {
