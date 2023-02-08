@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import routes from "./routes";
-//import { onAuthStateChanged } from "firebase/auth";
-//import { auth } from "@/firebase/firebaseInit";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase/firebaseInit";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -11,7 +11,7 @@ const router = createRouter({
 
 // À décommenter si besoin d'une route protégée
 
-/* const getCurrentUser = () => {
+ const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const removeListener = onAuthStateChanged(
       auth,
@@ -27,14 +27,14 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.authPage)) {
     if (await getCurrentUser()) {
-      next();
-    } else {
       next("/");
+    } else {
+      next();
     }
   } else {
     next();
   }
-}); */
+});
 
 router.afterEach(async (to, from, next) => {
   document.title = "Psy-Conscience - " + router.currentRoute.value.name;
