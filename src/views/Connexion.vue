@@ -84,7 +84,6 @@ const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
     .then(async (result) => {
-
       const usernameSnap = await getDoc(
         doc(db, "usernames", result.user.displayName)
       );
