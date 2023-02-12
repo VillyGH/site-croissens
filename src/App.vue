@@ -18,19 +18,22 @@
 import { useRouter } from 'vue-router'
 import NavigationBar from "@/components/NavigationBar";
 import BottomNav from "@/components/BottomNav";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { onAuthStateChanged } from "@firebase/auth";
 import { auth } from "@/firebase/firebaseInit";
+import moment from "moment/moment";
 
 const isLoading = ref(true);
 
 const router = useRouter()
 
 let currentPath = ref(router.currentRoute.value.path);
-console.log(currentPath.value)
 
-
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, () => {
   isLoading.value = false;
 });
+onMounted(async () => {
+  moment.locale("fr");
+});
+
 </script>

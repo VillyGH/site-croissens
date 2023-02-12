@@ -10,7 +10,7 @@
       />
       <div class="mt-4 text-secondary">{{ article.description }}</div>
       <div class="mt-4 justify-text">{{ article.text }}</div>
-      <Comments articleId="route.params.id" />
+      <Comments :article-id="this.$route.params.id"/>
     </div>
   </div>
 </template>
@@ -32,6 +32,7 @@ onMounted(async () => {
 const loadArticle = async () => {
   const articleDoc = await getDoc(doc(db, "articles", route.params.id));
   if (articleDoc.exists()) {
+    article.value.id = articleDoc.id;
     article.value = articleDoc.data();
   }
 };

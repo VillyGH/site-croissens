@@ -46,6 +46,11 @@
   background-color: #f79999;
 }
 
+a.button {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .card > img {
   height: 300px;
 }
