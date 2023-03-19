@@ -1,8 +1,8 @@
 <template>
-  <video v-if="currentPath === '/'" autoplay muted id="backgroundVid">
+  <video v-if="currentPath === '/'" id="backgroundVid" autoplay muted>
     <source src="./assets/background-modified.mp4" type="video/mp4" />
   </video>
-  <div v-if="isLoading" class="text-center" id="spinner">
+  <div v-if="isLoading" id="spinner" class="text-center">
     <b-spinner
       variant="info"
     ></b-spinner>
@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router";
 import NavigationBar from "@/components/NavigationBar";
 import BottomNav from "@/components/BottomNav";
 import { onMounted, ref } from "vue";
@@ -25,7 +25,7 @@ import moment from "moment/moment";
 
 const isLoading = ref(true);
 
-const router = useRouter()
+const router = useRouter();
 
 let currentPath = ref(router.currentRoute.value.path);
 

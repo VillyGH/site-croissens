@@ -18,10 +18,9 @@
           type="password"
         />
         <div class="mt-4 text-danger">{{ errorMessage }}</div>
-        <b-button class="mt-4 authButton" type="submit" variant="primary"
-        >Se connecter
-        </b-button
-        >
+        <b-button class="mt-4 authButton" type="submit" variant="primary">
+          Se connecter
+        </b-button>
         <b-button class="mt-4 ml-4 authButton" variant="danger" @click="signInWithGoogle"
         >Se connecter avec Google
         </b-button>
@@ -36,17 +35,20 @@ import { auth, db } from "@/firebase/firebaseInit";
 import { ref } from "vue";
 import { doc, getDoc, writeBatch } from "@firebase/firestore";
 import errorMessages from "../externalization/constants";
+import { useToast } from "vue-toastification";
 
 const email = ref("");
 const password = ref("");
 const errorMessage = ref();
 const router = useRouter();
+const toast = useToast();
 
 const login = () => {
   if (verifyUsername) {
     signInWithEmailAndPassword(auth, email.value, password.value)
-      .then((data) => {
-        console.log("L'utilisateur a été enregistré avec succès !");
+      .then(() => {
+        toast.success("L'utilisateur a été enregistré avec succès !");
+        console.log("");
         router.push({
           name: "Accueil"
         });

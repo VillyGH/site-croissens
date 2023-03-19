@@ -5,12 +5,12 @@
       <h1 class="text-center">{{ article.name }}</h1>
       <img
         class="categorieArticleImg"
-        v-bind:src="article.image"
         v-bind:alt="'Image de la catégorie ' + article.name"
+        v-bind:src="article.image"
       />
       <div class="mt-4 text-secondary">{{ article.description }}</div>
       <div class="mt-4 justify-text">{{ article.text }}</div>
-      <Comments :article-id="this.$route.params.id"/>
+      <Comments :article-id="this.$route.params.id" />
     </div>
   </div>
 </template>

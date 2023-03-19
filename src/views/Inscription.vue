@@ -6,39 +6,39 @@
         <label class="mt-3" for="username">Nom d'utilisateur</label>
         <b-form-input
           id="username"
-          required
           v-model="username"
-          @input="verifyUsername"
           placeholder="Nom d'utilisateur"
+          required
           type="text"
+          @input="verifyUsername"
         />
         <label class="mt-3" for="email">Courriel</label>
         <b-form-input
           id="email"
-          required
           v-model="email"
-          @input="verifyUsername"
           placeholder="Adresse courriel"
+          required
           type="text"
+          @input="verifyUsername"
         />
 
         <label class="mt-3" for="password">Mot de passe</label>
         <b-form-input
           id="password"
-          required
           v-model="password"
-          @input="verifyUsername"
           placeholder="Mot de passe"
+          required
           type="password"
+          @input="verifyUsername"
         />
         <div class="mt-4 text-danger">{{ errorMessage }}</div>
         <div class="mt-4 text-success">{{ nameVerifMessage }}</div>
-        <b-button type="submit" id="submit" variant="primary" class="mt-4"
+        <b-button id="submit" class="mt-4" type="submit" variant="primary"
         >Créer le compte
         </b-button
         >
       </b-form>
-      <b-button @click="signInWithGoogle" variant="danger" class="mt-4"
+      <b-button class="mt-4" variant="danger" @click="signInWithGoogle"
       >Se connecter avec Google
       </b-button
       >
@@ -51,7 +51,8 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } f
 import { auth, db } from "@/firebase/firebaseInit";
 import { ref } from "vue";
 import { doc, getDoc, writeBatch } from "@firebase/firestore";
-import errorMessages from "@/externalization/constants";
+import { errorMessages, successMessages } from "@/externalization/constants";
+import { useToast } from "vue-toastification";
 
 const username = ref("");
 const email = ref("");
@@ -60,6 +61,7 @@ let errorMessage = ref("");
 let nameVerifMessage = ref("");
 const router = useRouter();
 let exists = false;
+const toast = useToast();
 
 const updateState = () => {
   document.getElementById("submit").disabled = errorMessage.value !== "";
@@ -89,7 +91,7 @@ const register = async () => {
     errorMessage.value = "Le nom d'utilisateur existe déjà";
   } else if (errorMessage.value === "") {
     createUserWithEmailAndPassword(auth, email.value, password.value)
-      .then(async (data) => {
+      .then(async () => {
         console.log("L'utilisateur a été enregistré avec succès !");
         await createUserNameDB();
         await router.push({
@@ -97,24 +99,26 @@ const register = async () => {
         });
       })
       .catch((error) => {
+        let errorCode;
         switch (error.code) {
           case "auth/invalid-email":
-            errorMessage.value = "Adresse courriel invalide";
+            errorCode = errorMessages.invalidLogin;
             break;
           case "auth/email-already-in-use":
-            errorMessage.value = "Adresse courriel déjà utilisée";
+            errorCode = errorMessages.alreadyUsedEmail;
             break;
           case "auth/invalid-password":
-            errorMessage.value = "Le mot de passe est invalide";
+            errorCode = errorMessages.invalidLogin;
             break;
           case "auth/weak-password":
-            errorMessage.value =
+            errorCode =
               "Le mot de passe doit comporter au moins 6 caractères";
             break;
           default:
-            errorMessage.value = "Erreur: " + error.code;
+            errorCode = "Erreur: " + error.code;
             break;
         }
+        toast.error(errorCode);
         updateState();
       });
   }
@@ -133,10 +137,12 @@ const createUserNameDB = async () => {
 const signInWithGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
-    .then((result) => {
+    .then(() => {
       router.push({ name: "Accueil" });
+      toast.success(successMessages.authentification);
     })
     .catch((error) => {
+      toast.error(errorMessages.defaultMessage + error);
     });
 };
 </script>

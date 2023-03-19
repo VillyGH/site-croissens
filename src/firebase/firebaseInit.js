@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: "sitecroissens.appspot.com",
   messagingSenderId: "1009267990375",
   appId: "1:1009267990375:web:892691f9510747518299c2",
-  measurementId: "G-0VCJZKTJET",
+  measurementId: "G-0VCJZKTJET"
 };
 
 const app = initializeApp(firebaseConfig);

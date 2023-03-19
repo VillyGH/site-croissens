@@ -3,18 +3,18 @@
   <div class="ml-5 mt-5">
     <h1 class="text-center">Blogue</h1>
     <h3>Catégories d'article</h3>
-    <div style="display: flex; flex-direction: row; align-items: flex-start">
+    <div class="row mb-4">
       <div
-        class="ml-5"
-        v-bind:key="category"
         v-for="category in articleCategories"
+        v-bind:key="category"
+        class="ml-5"
       >
         <b-card
-          @click="goToCategory(category.name)"
-          v-bind:title="category.name"
-          v-bind:img-src="category.image"
-          v-bind:img-alt="'Image de la catégorie ' + category.name"
           class="mt-5 mb-2 card"
+          v-bind:img-alt="'Image de la catégorie ' + category.name"
+          v-bind:img-src="category.image"
+          v-bind:title="category.name"
+          @click="goToCategory(category.name)"
         >
           <b-card-text class="mt-4">
             {{ category.description }}
@@ -22,6 +22,7 @@
         </b-card>
       </div>
     </div>
+    <CreationCategory />
   </div>
 </template>
 
@@ -30,6 +31,7 @@ import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { db } from "@/firebase/firebaseInit";
 import { collection, getDocs, query } from "@firebase/firestore";
+import CreationCategory from "@/components/CreationCategory.vue";
 
 const articleCategories = ref([]);
 const router = useRouter();
@@ -46,7 +48,7 @@ const loadCategories = async () => {
     newDoc.id = doc.id;
     articleCategories.value.push(newDoc);
   });
-  articleCategories.value.sort(function (a, b) {
+  articleCategories.value.sort(function(a, b) {
     return a.name > b.name ? 1 : a.name < b.name ? -1 : 0;
   });
 };

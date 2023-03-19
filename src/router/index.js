@@ -6,12 +6,12 @@ import { auth } from "@/firebase/firebaseInit";
 const router = createRouter({
   history: createWebHistory(),
   base: process.env.BASE_URL,
-  routes,
+  routes
 });
 
 // À décommenter si besoin d'une route protégée
 
- const getCurrentUser = () => {
+const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const removeListener = onAuthStateChanged(
       auth,

@@ -11,18 +11,22 @@
         <li class="ms-2 mr-4">
           <a
             href="mailto:croissens@yahoo.ca"
-            target="blank"
             style="color: black"
-            ><b-icon-envelope
-          /></a>
+            target="blank"
+          >
+            <b-icon-envelope
+            />
+          </a>
         </li>
         <li class="ms-2 ml-2">
           <a
             href="https://www.facebook.com/nathalie.blanchet.334"
             style="color: black"
             target="blank"
-            ><b-icon-facebook
-          /></a>
+          >
+            <b-icon-facebook
+            />
+          </a>
         </li>
       </ul>
     </footer>

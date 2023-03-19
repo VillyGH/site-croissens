@@ -2,11 +2,11 @@
   <div>
     <router-view />
     <div class="ml-5 mt-5">
-      <div v-bind:key="conference" v-for="conference in conferences">
+      <div v-for="conference in conferences" v-bind:key="conference">
         <div>
           <img
-            v-bind:src="conference.image"
             v-bind:alt="'Image de la conférence ' + conference.name"
+            v-bind:src="conference.image"
           />
         </div>
         <div class="mt-4">

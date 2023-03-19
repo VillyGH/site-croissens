@@ -1,73 +1,81 @@
 <template>
-  <img src="../assets/img/logo.jpg" alt="Logo Croissens" />
+  <img alt="Logo Croissens" src="../assets/img/logo.jpg" />
   <b-navbar type="light">
     <b-navbar-nav>
       <router-link
+        :to="{ name: 'Accueil' }"
         class="nav-link"
         v-bind:class="{ active: $route.name === 'Accueil' }"
-        :to="{ name: 'Accueil' }"
-        >Accueil</router-link
+      >Accueil
+      </router-link
       >
       <router-link
+        :to="{ name: 'Blogue' }"
         class="nav-link ml-5"
         v-bind:class="{ active: $route.name === 'Blogue' }"
-        :to="{ name: 'Blogue' }"
-        >Blogue</router-link
+      >Blogue
+      </router-link
       >
-      <b-nav-item-dropdown text="Activités" class="ml-5">
+      <b-nav-item-dropdown class="ml-5" text="Activités">
         <b-dropdown-item
-          v-bind:class="{ active: $route.name === 'Ateliers' }"
           :to="{ name: 'Ateliers' }"
-          >Ateliers</b-dropdown-item
+          v-bind:class="{ active: $route.name === 'Ateliers' }"
+        >Ateliers
+        </b-dropdown-item
         >
         <b-dropdown-item
-          v-bind:class="{ active: $route.name === 'Échanges Intéractifs' }"
           :to="{ name: 'Échanges Intéractifs' }"
-          >Échanges Intéractifs</b-dropdown-item
+          v-bind:class="{ active: $route.name === 'Échanges Intéractifs' }"
+        >Échanges Intéractifs
+        </b-dropdown-item
         >
         <b-dropdown-item
-          v-bind:class="{ active: $route.name === 'Conférences' }"
           :to="{ name: 'Conférences' }"
-          >Conférences</b-dropdown-item
+          v-bind:class="{ active: $route.name === 'Conférences' }"
+        >Conférences
+        </b-dropdown-item
         >
       </b-nav-item-dropdown>
       <router-link
+        :to="{ name: 'Recherche' }"
         class="nav-link ml-5"
         v-bind:class="{ active: $route.name === 'Recherche' }"
-        :to="{ name: 'Recherche' }"
-        >Recherche</router-link
+      >Recherche
+      </router-link
       >
       <router-link
+        :to="{ name: 'À propos' }"
         class="nav-link ml-5"
         v-bind:class="{ active: $route.name === 'À propos' }"
-        :to="{ name: 'À propos' }"
-        >À propos</router-link
+      >À propos
+      </router-link
       >
       <router-link
+        :to="{ name: 'Me joindre' }"
         class="nav-link ml-5"
         v-bind:class="{ active: $route.name === 'Nous joindre' }"
-        :to="{ name: 'Me joindre' }"
-        >Me Joindre</router-link
+      >Me Joindre
+      </router-link
       >
     </b-navbar-nav>
     <div class="navbar-nav ml-auto">
-      <b-link @click="logOut" v-if="isLoggedIn" class="nav-link logout">
+      <b-link v-if="isLoggedIn" class="nav-link logout" @click="logOut">
         Se déconnecter
       </b-link>
 
       <router-link
-        class="nav-link mr-4"
-        v-bind:class="{ active: $route.name === 'Connexion' }"
         v-else
         :to="{ name: 'Connexion' }"
+        class="nav-link mr-4"
+        v-bind:class="{ active: $route.name === 'Connexion' }"
       >
         Connexion
       </router-link>
       <router-link
-        class="nav-link mr-4"
-        v-bind:class="{ active: $route.name === 'Inscription' }"
         v-if="!isLoggedIn"
         :to="{ name: 'Inscription' }"
+        class="nav-link mr-4"
+        v-bind:class="{ active: $route.name === 'Inscription' }"
       >
         Inscription
       </router-link>
@@ -89,6 +97,7 @@ onMounted(() => {
 });
 
 const logOut = () => {
-  signOut(auth).then(() => {});
+  signOut(auth).then(() => {
+  });
 };
 </script>

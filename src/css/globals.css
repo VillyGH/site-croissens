@@ -1,0 +1,52 @@
+#app {
+    font-family: "Times New Roman", Times, serif, sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #000000;
+}
+
+#body {
+    background: #464646 url("@/assets/img/background.jpg") no-repeat fixed center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: -1;
+}
+
+#spinner {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#backgroundVid {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+/*#region Links */
+
+a:hover {
+    text-decoration: none;
+}
+
+a.button {
+    cursor: pointer;
+}
+
+/*#endregion*/
+
+footer {
+    bottom: 0;
+}

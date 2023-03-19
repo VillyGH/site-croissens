@@ -3,10 +3,10 @@
     <h3 class="mt-5">Ajouter un Commentaire</h3>
     <div v-if="isLoggedIn">
       <b-form-textarea
-        required
         v-model="createdComment"
         max-rows="6"
         placeholder="Écrire un commentaire"
+        required
         rows="5"
         sm="2"
       ></b-form-textarea>
@@ -38,12 +38,12 @@
           <b-icon-pencil-square style="vertical-align: 0.5em"></b-icon-pencil-square>
         </a>
         <div class="mt-2">
-          <a class="button ml-3" @click="likeComment(comment)" style="color: green">
+          <a class="button ml-3" style="color: green" @click="likeComment(comment)">
             <b-icon-hand-thumbs-up-fill v-if="isCommentLiked(comment)"></b-icon-hand-thumbs-up-fill>
             <b-icon-hand-thumbs-up v-else></b-icon-hand-thumbs-up>
             <span class="ml-2">{{ comment.likes.length }}</span>
           </a>
-          <a class="button ml-4" @click="dislikeComment(comment)" style="color: red">
+          <a class="button ml-4" style="color: red" @click="dislikeComment(comment)">
             <b-icon-hand-thumbs-down-fill v-if="isCommentDisliked(comment)"></b-icon-hand-thumbs-down-fill>
             <b-icon-hand-thumbs-down v-else style=""></b-icon-hand-thumbs-down>
             <span class="ml-2">{{ comment.dislikes.length }}</span>
@@ -81,6 +81,7 @@ import { auth, db } from "@/firebase/firebaseInit";
 import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "@firebase/firestore";
 import { onAuthStateChanged } from "@firebase/auth";
 import moment from "moment";
+import { useToast } from "vue-toastification";
 
 const createdComment = ref("");
 const isLoggedIn = ref(false);
@@ -92,6 +93,7 @@ const username = ref("");
 const editedCommentId = ref("");
 
 const props = defineProps(["articleId"]);
+const toast = useToast();
 
 onMounted(async () => {
   onAuthStateChanged(auth, (user) => {
@@ -112,6 +114,7 @@ const createComment = async () => {
       dislikes: []
     };
     await addDoc(collection(db, `comments`), commentData);
+    toast.success("Le commentaire a bien été publié !");
     successMessage.value = "Le commentaire a bien été publié !";
     errorMessage.value = "";
     createdComment.value = "";
@@ -129,7 +132,7 @@ const editComment = async (comment) => {
       modified: true
     };
     let newComment = await updateDoc(doc(db, "comments", comment.id), commentData);
-    if(newComment) {
+    if (newComment) {
       window.location.reload();
     }
     editErrorMessage.value = "";
@@ -146,33 +149,33 @@ const removeElement = (array, value) => {
     array.splice(index, 1);
   }
   return array;
-}
+};
 
 const likeComment = async (comment) => {
-  if(isCommentLiked(comment)) {
+  if (isCommentLiked(comment)) {
     comment.likes = removeElement(comment.likes, auth.currentUser.uid);
   } else {
     comment.likes.push(auth.currentUser.uid);
   }
-  await updateDoc(doc(db, "comments", comment.id), {likes: comment.likes});
+  await updateDoc(doc(db, "comments", comment.id), { likes: comment.likes });
 };
 
 const dislikeComment = async (comment) => {
-  if(isCommentDisliked(comment)) {
+  if (isCommentDisliked(comment)) {
     comment.dislikes = removeElement(comment.dislikes, auth.currentUser.uid);
   } else {
     comment.dislikes.push(auth.currentUser.uid);
   }
-  await updateDoc(doc(db, "comments", comment.id), {dislikes: comment.dislikes});
+  await updateDoc(doc(db, "comments", comment.id), { dislikes: comment.dislikes });
 };
 
 const isCommentLiked = (comment) => {
   return comment.likes.length !== 0 && comment.likes.includes(auth.currentUser.uid);
-}
+};
 
 const isCommentDisliked = (comment) => {
   return comment.dislikes.length !== 0 && comment.dislikes.includes(auth.currentUser.uid);
-}
+};
 
 const changeEditMode = async (id) => {
   if (editedCommentId.value === "") {

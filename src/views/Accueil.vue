@@ -6,8 +6,8 @@
     <p class="ml-5 mt-5">Ce site est en développement</p>
     <div style="height: 300px"></div>
     <b-row align-h="around">
-      <b-col cols="2" class="white-col"
-        ><h3>Titre 1</h3>
+      <b-col class="white-col" cols="2"
+      ><h3>Titre 1</h3>
         <p>
           As an alternative theory, (and because Latin scholars do this sort of
           thing) someone tracked down a 1914 Latin edition of De Finibus which
@@ -23,8 +23,8 @@
           sail into the 21st century.
         </p></b-col
       >
-      <b-col cols="2" class="white-col"
-        ><h3>Titre 2</h3>
+      <b-col class="white-col" cols="2"
+      ><h3>Titre 2</h3>
         <p>
           As an alternative theory, (and because Latin scholars do this sort of
           thing) someone tracked down a 1914 Latin edition of De Finibus which
@@ -40,8 +40,8 @@
           sail into the 21st century.
         </p></b-col
       >
-      <b-col cols="2" class="white-col"
-        ><h3>Titre 3</h3>
+      <b-col class="white-col" cols="2"
+      ><h3>Titre 3</h3>
         <p>
           As an alternative theory, (and because Latin scholars do this sort of
           thing) someone tracked down a 1914 Latin edition of De Finibus which
@@ -57,8 +57,8 @@
           sail into the 21st century.
         </p></b-col
       >
-      <b-col cols="2" class="white-col"
-        ><h3>Titre 4</h3>
+      <b-col class="white-col" cols="2"
+      ><h3>Titre 4</h3>
         <p>
           As an alternative theory, (and because Latin scholars do this sort of
           thing) someone tracked down a 1914 Latin edition of De Finibus which
