@@ -34,8 +34,8 @@ import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 
 import { auth, db } from "@/firebase/firebaseInit";
 import { ref } from "vue";
 import { doc, getDoc, writeBatch } from "@firebase/firestore";
-import errorMessages from "../externalization/constants";
 import { useToast } from "vue-toastification";
+import { errorMessages } from "@/externalization/constants";
 
 const email = ref("");
 const password = ref("");
@@ -48,7 +48,6 @@ const login = () => {
     signInWithEmailAndPassword(auth, email.value, password.value)
       .then(() => {
         toast.success("L'utilisateur a été enregistré avec succès !");
-        console.log("");
         router.push({
           name: "Accueil"
         });

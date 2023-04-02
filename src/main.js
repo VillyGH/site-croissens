@@ -7,12 +7,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "./css/style.css";
 import "./css/globals.css";
-import constants from "./externalization/constants";
 import router from "./router";
 
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
-Vue.use(constants);
 
 Vue.use(Toast, {
   transition: "Vue-Toastification__bounce",

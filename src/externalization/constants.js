@@ -9,5 +9,7 @@ export const errorMessages = {
 };
 
 export const successMessages = {
-  authentification: "Authentification réussie !"
+  authentification: "Authentification réussie !",
+  editedArticleCategory: "La catégorie d'article a bien été modifiée !",
+  deletedArticleCategory: "La catégorie d'article a bien été modifiée !"
 }
