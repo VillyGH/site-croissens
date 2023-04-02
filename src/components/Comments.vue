@@ -11,7 +11,6 @@
         sm="2"
       ></b-form-textarea>
       <b-button class="mt-4" variant="primary" @click="createComment">Envoyer</b-button>
-      <span class="text-success" style="vertical-align: center">{{ successMessage }}</span>
     </div>
     <div v-else>
       <h5>Vous devez être connecté pour publier un commentaire</h5>
@@ -35,15 +34,15 @@
           v-bind:disabled="editedCommentId !== comment.id"
         ></textarea>
         <a v-if="isLoggedIn && comment.owner === username" class="ml-4" @click="changeEditMode(comment.id)">
-          <b-icon-pencil-square style="vertical-align: 0.5em"></b-icon-pencil-square>
+          <b-icon-pencil-square class="align-middle"></b-icon-pencil-square>
         </a>
         <div class="mt-2">
-          <a class="button ml-3" style="color: green" @click="likeComment(comment)">
+          <a class="button ml-3 greenColor" @click="likeComment(comment)">
             <b-icon-hand-thumbs-up-fill v-if="isCommentLiked(comment)"></b-icon-hand-thumbs-up-fill>
             <b-icon-hand-thumbs-up v-else></b-icon-hand-thumbs-up>
             <span class="ml-2">{{ comment.likes.length }}</span>
           </a>
-          <a class="button ml-4" style="color: red" @click="dislikeComment(comment)">
+          <a class="button ml-4 redColor" @click="dislikeComment(comment)">
             <b-icon-hand-thumbs-down-fill v-if="isCommentDisliked(comment)"></b-icon-hand-thumbs-down-fill>
             <b-icon-hand-thumbs-down v-else style=""></b-icon-hand-thumbs-down>
             <span class="ml-2">{{ comment.dislikes.length }}</span>
@@ -86,7 +85,6 @@ import { useToast } from "vue-toastification";
 const createdComment = ref("");
 const isLoggedIn = ref(false);
 const errorMessage = ref("");
-const successMessage = ref("");
 const editErrorMessage = ref("");
 const comments = ref([]);
 const username = ref("");
@@ -115,12 +113,9 @@ const createComment = async () => {
     };
     await addDoc(collection(db, `comments`), commentData);
     toast.success("Le commentaire a bien été publié !");
-    successMessage.value = "Le commentaire a bien été publié !";
-    errorMessage.value = "";
     createdComment.value = "";
-    window.location.reload();
   } else {
-    errorMessage.value = "Le commentaire doit avoir entre 3 et 450 caractères";
+    toast.error("Le commentaire doit avoir entre 3 et 450 caractères");
   }
 };
 
@@ -131,12 +126,9 @@ const editComment = async (comment) => {
       text: comment.text,
       modified: true
     };
-    let newComment = await updateDoc(doc(db, "comments", comment.id), commentData);
-    if (newComment) {
-      window.location.reload();
-    }
+    await updateDoc(doc(db, "comments", comment.id), commentData);
+    await loadComments();
     editErrorMessage.value = "";
-
   } else {
     editErrorMessage.value =
       "Le commentaire doit avoir entre 3 et 450 caractères";
@@ -193,6 +185,7 @@ const getCurrentUsername = async () => {
 };
 
 const loadComments = async () => {
+  comments.value = [];
   const querySnapshot = await getDocs(
     query(collection(db, "comments"), where("article", "==", props.articleId))
   );

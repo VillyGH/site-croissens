@@ -9,17 +9,17 @@
         v-bind:key="category"
         class="ml-5"
       >
-        <b-card
-          class="mt-5 mb-2 card"
-          v-bind:img-alt="'Image de la catégorie ' + category.name"
-          v-bind:img-src="category.image"
-          v-bind:title="category.name"
-          @click="goToCategory(category.name)"
-        >
-          <b-card-text class="mt-4">
-            {{ category.description }}
-          </b-card-text>
-        </b-card>
+        <div class="card">
+          <b-card-img @click="goToCategory(category.name)" v-bind:src="category.image" v-bind:alt="'Image de la catégorie ' + category.name"></b-card-img>
+          <b-card-body>
+            <b-card-title @click="goToCategory(category.name)">{{category.name}}</b-card-title>
+            <DeleteCategory :category=category @refreshCategories="loadCategories" />
+            <EditCategory :category=category @refreshCategories="loadCategories" />
+            <b-card-text class="mt-4">
+              {{ category.description }}
+            </b-card-text>
+          </b-card-body>
+        </div>
       </div>
     </div>
     <CreationCategory />
@@ -32,6 +32,8 @@ import { onMounted, ref } from "vue";
 import { db } from "@/firebase/firebaseInit";
 import { collection, getDocs, query } from "@firebase/firestore";
 import CreationCategory from "@/components/CreationCategory.vue";
+import EditCategory from "@/components/EditCategory.vue";
+import DeleteCategory from "@/components/DeleteCategory.vue";
 
 const articleCategories = ref([]);
 const router = useRouter();
@@ -40,6 +42,7 @@ onMounted(async () => {
 });
 
 const loadCategories = async () => {
+  articleCategories.value = [];
   const querySnapshot = await getDocs(
     query(collection(db, "articleCategories"))
   );

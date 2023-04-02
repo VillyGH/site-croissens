@@ -16,6 +16,8 @@
     z-index: -1;
 }
 
+/*#region Background*/
+
 #spinner {
     height: 100vh;
     display: flex;
@@ -35,13 +37,23 @@
     z-index: -1;
 }
 
+/*#endregion*/
+
+.greenColor {
+    color: green;
+}
+
+.redColor {
+    color: red;
+}
+
 /*#region Links */
 
 a:hover {
     text-decoration: none;
 }
 
-a.button {
+a.button, .link {
     cursor: pointer;
 }
 
