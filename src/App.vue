@@ -1,7 +1,4 @@
 <template>
-  <video v-if="currentPath === '/'" id="backgroundVid" autoplay muted>
-    <source src="./assets/background-modified.mp4" type="video/mp4" />
-  </video>
   <div v-if="isLoading" id="spinner" class="text-center">
     <b-spinner
       variant="info"
@@ -27,7 +24,7 @@ const isLoading = ref(true);
 
 const router = useRouter();
 
-let currentPath = ref(router.currentRoute.value.path);
+
 
 onAuthStateChanged(auth, () => {
   isLoading.value = false;

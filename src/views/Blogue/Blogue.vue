@@ -16,6 +16,8 @@
             <DeleteCategory :category=category @refreshCategories="loadCategories" />
             <EditCategory :category=category @refreshCategories="loadCategories" />
             <b-card-text class="mt-4">
+
+
               {{ category.description }}
             </b-card-text>
           </b-card-body>
@@ -31,9 +33,9 @@ import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
 import { db } from "@/firebase/firebaseInit";
 import { collection, getDocs, query } from "@firebase/firestore";
-import CreationCategory from "@/components/CreationCategory.vue";
-import EditCategory from "@/components/EditCategory.vue";
-import DeleteCategory from "@/components/DeleteCategory.vue";
+import CreationCategory from "@/components/ArticleCategory/CreationCategory.vue";
+import EditCategory from "@/components/ArticleCategory/EditCategory.vue";
+import DeleteCategory from "@/components/ArticleCategory/DeleteCategory.vue";
 
 const articleCategories = ref([]);
 const router = useRouter();
