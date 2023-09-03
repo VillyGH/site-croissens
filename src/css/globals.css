@@ -7,7 +7,7 @@
     color: #000000;
 }
 
-#body {
+body {
     background: #464646 url("@/assets/img/background.jpg") no-repeat fixed center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
