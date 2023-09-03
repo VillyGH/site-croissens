@@ -6,7 +6,6 @@ npm run build
 
 cd dist
 
-git push -f git@github.com:VillyGH/site-croissens.git main:gh-pages
+git add -A
 
-cd ..
-
+git push -f git@github.com:VillyGH/site-croissens.git master:gh-pages
