@@ -8,4 +8,4 @@ cd dist
 
 git add . -f
 
-git push -f git@github.com:VillyGH/site-croissens.git master:gh-pages
+git push -f origin master:gh-pages
