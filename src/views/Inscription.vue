@@ -92,7 +92,6 @@ const register = async () => {
   } else if (errorMessage.value === "") {
     createUserWithEmailAndPassword(auth, email.value, password.value)
       .then(async () => {
-        console.log("L'utilisateur a été enregistré avec succès !");
         await createUserNameDB();
         await router.push({
           name: "Accueil"
