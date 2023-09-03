@@ -15,6 +15,5 @@
       "dom.iterable",
       "scripthost"
     ]
-  },
-  "include": ["./src/**/*", "tests/data/loginJsonFake.js"]
+  }
 }
