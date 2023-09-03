@@ -19,7 +19,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-          cache-dependency-path: "./site-croissens/package-lock.json"
       - run: |
             if [ ! -f package-lock.json ]; then
               npm install
