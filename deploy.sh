@@ -6,6 +6,6 @@ npm run build
 
 cd dist
 
-git add . -f
+git add -A
 
 git push -f origin master:gh-pages
