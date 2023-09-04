@@ -1,11 +1,9 @@
 #!/usr/bin/env sh
 
-set -e
+#set -e
 
 npm run build
 
-cd dist
+git add dist && git commit -m 'adding dist subtree'
 
-git add -A
-
-git push -f origin master:gh-pages
+git subtree push --prefix dist origin gh-pages
