@@ -4,6 +4,7 @@ import fs from "fs";
 (async () => {
   try {
     await execa("git", ["config", "--global", "user.email", "willclash@outlook.com"])
+    await execa("git", ["config", "--global", "user.name", "William Blanchet Lafrenière"])
     await execa("git", ["checkout", "--orphan", "gh-pages"]);
     // eslint-disable-next-line no-console
     console.log("Building started...");
