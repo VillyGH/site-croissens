@@ -9,8 +9,6 @@ const router = createRouter({
   routes
 });
 
-// À décommenter si besoin d'une route protégée
-
 const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const removeListener = onAuthStateChanged(
@@ -29,6 +27,7 @@ router.beforeEach(async (to, from, next) => {
     if (await getCurrentUser()) {
       next("/");
     } else {
+      console.log(process.env.BASE_URL)
       next();
     }
   } else {
