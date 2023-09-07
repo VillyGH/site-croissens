@@ -31,6 +31,7 @@ router.beforeEach(async (to, from, next) => {
       next();
     }
   } else {
+    console.log(process.env.BASE_URL)
     next();
   }
 });
