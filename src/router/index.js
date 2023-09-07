@@ -4,8 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebase/firebaseInit";
 
 const router = createRouter({
-  history: createWebHistory(),
-  base: process.env.BASE_URL,
+  history: createWebHistory(process.env.BASE_URL),
   routes
 });
 
@@ -27,11 +26,9 @@ router.beforeEach(async (to, from, next) => {
     if (await getCurrentUser()) {
       next("/");
     } else {
-      console.log(process.env.BASE_URL)
       next();
     }
   } else {
-    console.log(process.env.BASE_URL)
     next();
   }
 });
