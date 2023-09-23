@@ -1,21 +1,24 @@
 <template>
-  <img alt="Logo Croissens" src="../assets/img/logo.jpg" />
-  <b-navbar type="light">
+
+  <b-navbar toggleable="lg" type="light">
+    <b-navbar-brand href="#">
+      <img alt="Logo Croissens" src="../assets/img/logo.jpg" />
+    </b-navbar-brand>
+    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+    <b-collapse id="nav-collapse" is-nav>
     <b-navbar-nav>
       <router-link
         :to="{ name: 'Accueil' }"
         class="nav-link"
         v-bind:class="{ active: $route.name === 'Accueil' }"
       >Accueil
-      </router-link
-      >
+      </router-link>
       <router-link
         :to="{ name: 'Blogue' }"
         class="nav-link ml-5"
         v-bind:class="{ active: $route.name === 'Blogue' }"
       >Blogue
-      </router-link
-      >
+      </router-link>
       <b-nav-item-dropdown class="ml-5" text="Activités">
         <b-dropdown-item
           :to="{ name: 'Ateliers' }"
@@ -58,7 +61,7 @@
       </router-link
       >
     </b-navbar-nav>
-    <div class="navbar-nav ml-auto">
+    <b-navbar-nav class="ml-auto">
       <b-link v-if="isLoggedIn" class="nav-link logout" @click="logOut">
         Se déconnecter
       </b-link>
@@ -75,11 +78,11 @@
         v-if="!isLoggedIn"
         :to="{ name: 'Inscription' }"
         class="nav-link mr-4"
-        v-bind:class="{ active: $route.name === 'Inscription' }"
-      >
+        v-bind:class="{ active: $route.name === 'Inscription' }">
         Inscription
       </router-link>
-    </div>
+      </b-navbar-nav>
+      </b-collapse>
   </b-navbar>
 </template>
 
