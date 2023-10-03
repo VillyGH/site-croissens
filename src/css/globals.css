@@ -8,11 +8,11 @@
 }
 
 body {
-    background: #464646 url("@/assets/img/background.jpg") no-repeat fixed center center;
+    background: no-repeat url("@/assets/img/background.jpg") fixed top;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: 100%;
     z-index: -1;
 }
 
@@ -60,5 +60,8 @@ a.button, .link {
 /*#endregion*/
 
 footer {
+    left: 0;
     bottom: 0;
+    width: 100%;
+    text-align: center;
 }

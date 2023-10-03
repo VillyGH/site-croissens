@@ -12,10 +12,8 @@
           <a
             href="mailto:croissens@yahoo.ca"
             style="color: black"
-            target="blank"
-          >
-            <b-icon-envelope
-            />
+            target="blank">
+            <b-icon-envelope/>
           </a>
         </li>
         <li class="ms-2 ml-2">
@@ -35,7 +33,7 @@
 
 <script setup>
 import moment from "moment";
-import { ref } from "vue";
+import {ref} from "vue";
 
 const currentYear = ref(moment().year());
 </script>
