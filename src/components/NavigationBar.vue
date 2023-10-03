@@ -46,17 +46,18 @@
           Recherche
       </router-link>
       <router-link
+                :to="{ name: 'Me joindre' }"
+                class="nav-link ml-5"
+                v-bind:class="{ active: $route.name === 'Nous joindre' }">
+            Me Joindre
+      </router-link>
+      <router-link
         :to="{ name: 'À propos' }"
         class="nav-link ml-5"
         v-bind:class="{ active: $route.name === 'À propos' }">
           À propos
       </router-link>
-      <router-link
-        :to="{ name: 'Me joindre' }"
-        class="nav-link ml-5"
-        v-bind:class="{ active: $route.name === 'Nous joindre' }">
-          Me Joindre
-      </router-link>
+
     </b-navbar-nav>
     <b-navbar-nav class="ml-auto">
       <b-link v-if="isLoggedIn" class="nav-link logout" @click="logOut">
