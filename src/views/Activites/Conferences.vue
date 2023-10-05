@@ -1,12 +1,12 @@
 <template>
   <div>
-    <router-view />
+    <router-view/>
     <div class="ml-5 mt-5">
       <div v-for="conference in conferences" v-bind:key="conference">
         <div>
           <img
-            v-bind:alt="'Image de la conférence ' + conference.name"
-            v-bind:src="conference.image"
+              v-bind:alt="'Image de la conférence ' + conference.name"
+              v-bind:src="conference.image"
           />
         </div>
         <div class="mt-4">
@@ -22,10 +22,10 @@
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
-import { collection, getDocs, query } from "@firebase/firestore";
-import { db } from "@/firebase/firebaseInit";
-import { onMounted, ref } from "vue";
+import {useRoute} from "vue-router";
+import {collection, getDocs, query} from "@firebase/firestore";
+import {db} from "@/firebase/firebaseInit";
+import {onMounted, ref} from "vue";
 import moment from "moment";
 
 const route = useRoute();

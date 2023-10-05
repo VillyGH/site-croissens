@@ -1,26 +1,27 @@
 <template>
-  <b-icon-pencil-square @click="changeModalVisibility(true)" class="link align-middle float-right mx-3"></b-icon-pencil-square>
-  <b-modal v-model="modalShowed" id="modal" hide-footer v-bind:title="'Modification de l\'article ' + name">
+  <b-icon-pencil-square class="link align-middle float-right mx-3"
+                        @click="changeModalVisibility(true)"></b-icon-pencil-square>
+  <b-modal id="modal" v-model="modalShowed" hide-footer v-bind:title="'Modification de l\'article ' + name">
     <label>Titre</label>
     <b-form-input
-      v-model="name"
-      placeholder="Titre"
-      required
-      type="text"
+        v-model="name"
+        placeholder="Titre"
+        required
+        type="text"
     />
     <label class="mt-3">Sous-Titre</label>
     <b-form-input
-      v-model="description"
-      placeholder="Sous Titre"
-      required
-      type="text"
+        v-model="description"
+        placeholder="Sous Titre"
+        required
+        type="text"
     />
     <label class="mt-3">Lien de l'image</label>
     <b-form-textarea
-      v-model="image"
-      placeholder="Lien de l'image"
-      required
-      type="text"
+        v-model="image"
+        placeholder="Lien de l'image"
+        required
+        type="text"
     />
     <div class="float-right">
       <b-button class="mr-2 mt-3" variant="primary" @click="modifyArticleCategory">Enregistrer</b-button>
@@ -29,11 +30,11 @@
 </template>
 
 <script setup>
-import { getCurrentInstance, ref } from "vue";
-import { doc, updateDoc } from "@firebase/firestore";
-import { db } from "@/firebase/firebaseInit";
-import { useToast } from "vue-toastification";
-import { errorMessages, successMessages } from "@/externalization/constants";
+import {getCurrentInstance, ref} from "vue";
+import {doc, updateDoc} from "@firebase/firestore";
+import {db} from "@/firebase/firebaseInit";
+import {useToast} from "vue-toastification";
+import {errorMessages, successMessages} from "@/externalization/constants";
 
 const instance = getCurrentInstance();
 const props = defineProps(['category']);

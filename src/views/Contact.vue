@@ -30,7 +30,7 @@
               <a href="tel:+14186277227">
                 <b-icon-telephone/>
                 <sp class="ml-5">(418) 627-7227</sp>
-                </a>
+              </a>
             </div>
             <div class="mt-3 mb-5">
               <a href="tel:+14186277227">
@@ -40,12 +40,12 @@
             </div>
           </div>
           <div class="d-flex flex-row justify-content-around ml-2 mr-2">
-                <a href="https://www.facebook.com/nathalie.blanchet.334">
-                  <b-icon-facebook scale="2"/>
-                </a>
-                <a href="https://web.telegram.org">
-                      <b-icon-telegram scale="2"/>
-                </a>
+            <a href="https://www.facebook.com/nathalie.blanchet.334">
+              <b-icon-facebook scale="2"/>
+            </a>
+            <a href="https://web.telegram.org">
+              <b-icon-telegram scale="2"/>
+            </a>
           </div>
         </b-col>
       </b-row>
