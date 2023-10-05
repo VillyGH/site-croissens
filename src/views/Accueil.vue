@@ -1,8 +1,8 @@
 <template>
   <div>
-    <router-view />
+    <router-view/>
     <video id="backgroundVid" autoplay muted>
-      <source src="./../assets/background-modified.mp4" type="video/mp4" />
+      <source src="./../assets/background-modified.mp4" type="video/mp4"/>
     </video>
     <div style="height: 300px"></div>
     <b-row align-h="around">
@@ -41,7 +41,7 @@
         </p>
       </b-col>
     </b-row>
-      <div style="height: 300px"></div>
+    <div style="height: 300px"></div>
   </div>
 </template>
 <script setup>

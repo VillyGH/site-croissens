@@ -16,8 +16,6 @@
             <DeleteCategory :category=category @refreshCategories="loadCategories" />
             <EditCategory :category=category @refreshCategories="loadCategories" />
             <b-card-text class="mt-4">
-
-
               {{ category.description }}
             </b-card-text>
           </b-card-body>

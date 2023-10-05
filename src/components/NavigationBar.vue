@@ -41,7 +41,7 @@
       </b-nav-item-dropdown>
       <router-link
         :to="{ name: 'Recherche' }"
-        class="nav-link ml-5"
+        class="nav-link ml-5 disabled"
         v-bind:class="{ active: $route.name === 'Recherche' }">
           Recherche
       </router-link>

@@ -3,12 +3,12 @@
     <h3 class="mt-5">Ajouter un Commentaire</h3>
     <div v-if="isLoggedIn">
       <b-form-textarea
-        v-model="createdComment"
-        max-rows="6"
-        placeholder="Écrire un commentaire"
-        required
-        rows="5"
-        sm="2"
+          v-model="createdComment"
+          max-rows="6"
+          placeholder="Écrire un commentaire"
+          required
+          rows="5"
+          sm="2"
       ></b-form-textarea>
       <b-button class="mt-4" variant="primary" @click="createComment">Envoyer</b-button>
     </div>
@@ -25,24 +25,24 @@
       </div>
       <div class="mb-4">
         <textarea
-          id="comment"
-          v-model="comment.text"
-          class="input-message mt-3"
-          cols="45"
-          required
-          rows="1"
-          v-bind:disabled="editedCommentId !== comment.id"
+            id="comment"
+            v-model="comment.text"
+            class="input-message mt-3"
+            cols="45"
+            required
+            rows="1"
+            v-bind:disabled="editedCommentId !== comment.id"
         ></textarea>
         <a v-if="isLoggedIn && comment.owner === username" class="ml-4" @click="changeEditMode(comment.id)">
           <b-icon-pencil-square class="align-middle"></b-icon-pencil-square>
         </a>
         <div class="mt-2">
-          <a class="button ml-3 greenColor" @click="likeComment(comment)">
+          <a class="button ml-3 text-success" @click="likeComment(comment)">
             <b-icon-hand-thumbs-up-fill v-if="isCommentLiked(comment)"></b-icon-hand-thumbs-up-fill>
             <b-icon-hand-thumbs-up v-else></b-icon-hand-thumbs-up>
             <span class="ml-2">{{ comment.likes.length }}</span>
           </a>
-          <a class="button ml-4 redColor" @click="dislikeComment(comment)">
+          <a class="button ml-4 text-danger" @click="dislikeComment(comment)">
             <b-icon-hand-thumbs-down-fill v-if="isCommentDisliked(comment)"></b-icon-hand-thumbs-down-fill>
             <b-icon-hand-thumbs-down v-else style=""></b-icon-hand-thumbs-down>
             <span class="ml-2">{{ comment.dislikes.length }}</span>
@@ -50,20 +50,20 @@
         </div>
         <div>
           <b-button
-            id="confirmEditBtn"
-            class="mt-2"
-            v-bind:hidden="editedCommentId !== comment.id"
-            variant="primary"
-            @click="editComment(comment)"
+              id="confirmEditBtn"
+              class="mt-2"
+              v-bind:hidden="editedCommentId !== comment.id"
+              variant="primary"
+              @click="editComment(comment)"
           >Confirmer
           </b-button
           >
           <b-button
-            id="confirmEditBtn"
-            class="mt-2"
-            v-bind:hidden="editedCommentId !== comment.id"
-            variant="secondary"
-            @click="changeEditMode(comment.id)"
+              id="confirmEditBtn"
+              class="mt-2"
+              v-bind:hidden="editedCommentId !== comment.id"
+              variant="secondary"
+              @click="changeEditMode(comment.id)"
           >Annuler
           </b-button
           >
@@ -75,12 +75,12 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
-import { auth, db } from "@/firebase/firebaseInit";
-import { addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where } from "@firebase/firestore";
-import { onAuthStateChanged } from "@firebase/auth";
+import {onMounted, ref} from "vue";
+import {auth, db} from "@/firebase/firebaseInit";
+import {addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where} from "@firebase/firestore";
+import {onAuthStateChanged} from "@firebase/auth";
 import moment from "moment";
-import { useToast } from "vue-toastification";
+import {useToast} from "vue-toastification";
 
 const createdComment = ref("");
 const isLoggedIn = ref(false);
@@ -131,7 +131,7 @@ const editComment = async (comment) => {
     editErrorMessage.value = "";
   } else {
     editErrorMessage.value =
-      "Le commentaire doit avoir entre 3 et 450 caractères";
+        "Le commentaire doit avoir entre 3 et 450 caractères";
   }
 };
 
@@ -149,7 +149,7 @@ const likeComment = async (comment) => {
   } else {
     comment.likes.push(auth.currentUser.uid);
   }
-  await updateDoc(doc(db, "comments", comment.id), { likes: comment.likes });
+  await updateDoc(doc(db, "comments", comment.id), {likes: comment.likes});
 };
 
 const dislikeComment = async (comment) => {
@@ -158,7 +158,7 @@ const dislikeComment = async (comment) => {
   } else {
     comment.dislikes.push(auth.currentUser.uid);
   }
-  await updateDoc(doc(db, "comments", comment.id), { dislikes: comment.dislikes });
+  await updateDoc(doc(db, "comments", comment.id), {dislikes: comment.dislikes});
 };
 
 const isCommentLiked = (comment) => {
@@ -187,7 +187,7 @@ const getCurrentUsername = async () => {
 const loadComments = async () => {
   comments.value = [];
   const querySnapshot = await getDocs(
-    query(collection(db, "comments"), where("article", "==", props.articleId))
+      query(collection(db, "comments"), where("article", "==", props.articleId))
   );
   querySnapshot.forEach((doc) => {
     const newDoc = doc.data();
