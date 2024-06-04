@@ -14,7 +14,7 @@
 <script setup>
 import {useRouter} from "vue-router";
 import NavigationBar from "@/components/NavigationBar";
-import BottomNav from "@/components/BottomNav";
+import BottomNav from "@/components/Footer.vue";
 import {onMounted, ref} from "vue";
 import {onAuthStateChanged} from "@firebase/auth";
 import {auth} from "@/firebase/firebaseInit";
