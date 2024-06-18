@@ -1,0 +1,97 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+
+      match /users/{userId} {
+      	allow read;
+        allow create: if isValidUser(userId);
+      }
+      
+      function isValidUser(userId) {
+        let isOwner = request.auth.uid == userId;
+      	let name = request.resource.data.name;
+        let createdValidUsername = existsAfter(/databases/$(database)/documents/usernames/$(name));
+        
+        return isOwner && createdValidUsername;
+      }
+      
+      match /usernames/{name} {
+      	allow read;
+        allow create: if isValidUsername(name);
+      }
+      
+      function isValidUsername(name) {
+        let isOwner = request.auth.uid == request.resource.data.uid;
+        let isValidLength = name.size() >= 3 && name.size() <= 50;
+        let isValidUserDoc = getAfter(/databases/$(database)/documents/users/$(request.auth.uid)).data.name == name;
+        
+        return isOwner && isValidLength && isValidUserDoc;     
+      }
+      
+      match /comments/{commentId} {
+      	allow read;
+        allow create: if isValidComment(commentId);
+        allow update: if isValidComment(commentId);
+      }
+      
+      function isValidComment(commentId) {
+        let isOwner = get(/databases/$(database)/documents/users/$(request.auth.uid)).data.name == request.resource.data.owner;
+        let text = request.resource.data.text;
+        let isValidLength = text.size() >= 2 && text.size() <= 450;
+        let createdValidComment = existsAfter(/databases/$(database)/documents/comments/$(commentId));
+        
+        return isOwner && isValidLength && createdValidComment;
+      }
+      
+      match /articles/{articleId} {
+      	allow read;
+        allow create: if isValidArticle(articleId);
+        allow update: if isValidArticle(articleId);
+        allow delete;
+      }
+      
+      function isValidArticle(articleId) {
+        let name = request.resource.data.name;
+        let description = request.resource.data.description;
+        let isValidLength = name.size() >= 2 && name.size() <= 50 && description.size() >= 2 && description.size() <= 300;
+        let createdValidArticle = existsAfter(/databases/$(database)/documents/articles/$(articleId));
+        
+        return isValidLength && createdValidArticle;
+      }
+      
+      match /articleCategories/{categoryId} {
+      	allow read;
+        allow create: if isValidCategory(categoryId);
+        allow update: if isValidCategory(categoryId);
+        allow delete;
+      }
+      
+      function isValidCategory(categoryId) {
+        let name = request.resource.data.name;
+        let description = request.resource.data.description;
+        let isValidLength = name.size() >= 2 && name.size() <= 50 && description.size() >= 2 && description.size() <= 300;
+        let createdValidArticle = existsAfter(/databases/$(database)/documents/articleCategories/$(categoryId));
+        
+        return isValidLength && createdValidArticle;
+      }
+      
+      match /conferences/{conferenceId} {
+      	allow read;
+        allow create: if isValidConference(conferenceId);
+        allow update: if isValidConference(conferenceId);
+      }
+      
+      function isValidConference(conferenceId) {
+        let name = request.resource.data.name;
+        let description = request.resource.data.description;
+        let isValidLength = name.size() >= 2 && name.size() <= 50 && description.size() >= 2 && description.size() <= 300;
+        let createdValidConference = existsAfter(/databases/$(database)/documents/articles/$(conferenceId));
+        
+        return isValidLength && createdValidConference;
+      }
+      
+    }
+    
+  }
+}
