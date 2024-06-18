@@ -20,8 +20,6 @@ Vue.use(Toast, {
 
 Vue.config.productionTip = false;
 
-const app = Vue.createApp(App);
+const app = Vue.createApp(App).mount("#app");
 
 app.use(router);
-
-app.mount("#app");
