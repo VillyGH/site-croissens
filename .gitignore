@@ -2,6 +2,7 @@
 node_modules
 firebaseInit
 dist
+.firebase
 
 # local env files
 .env.local
