@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue, {createApp} from "vue";
 import App from "./App.vue";
 import Toast from "vue-toastification";
 import {BootstrapVue, BootstrapVueIcons} from "bootstrap-vue";
@@ -9,17 +9,19 @@ import "./css/style.css";
 import "./css/globals.css";
 import router from "./router";
 
-Vue.use(BootstrapVue);
-Vue.use(BootstrapVueIcons);
+const app = createApp(App);
 
-Vue.use(Toast, {
+app.use(BootstrapVue);
+app.use(BootstrapVueIcons);
+
+app.use(Toast, {
     transition: "Vue-Toastification__bounce",
     maxToasts: 20,
     newestOnTop: true
 });
 
-Vue.config.productionTip = false;
-
-const app = Vue.createApp(App).mount("#app");
+app.config.productionTip = false;
 
 app.use(router);
+
+app.mount("#app");
