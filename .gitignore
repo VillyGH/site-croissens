@@ -3,7 +3,6 @@ node_modules
 firebaseInit
 dist
 .firebase
-.idea
 
 # local env files
 .env.local
