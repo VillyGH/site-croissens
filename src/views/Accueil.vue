@@ -5,8 +5,8 @@
       <source src="./../assets/background-modified.mp4" type="video/mp4"/>
     </video>
     <div style="height: 300px"></div>
-    <b-row align-h="around">
-      <b-col class="white-col" cols="2">
+    <BRow align-h="around">
+      <BCol class="white-col" cols="2">
         <h3>Titre 1</h3>
         <p>
           As an alternative theory, (and because Latin scholars do this sort of
@@ -22,8 +22,8 @@
           inspired a graphic designer, it's admittedly an odd way for Cicero to
           sail into the 21st century.
         </p>
-      </b-col>
-      <b-col class="white-col" cols="2">
+      </BCol>
+      <BCol class="white-col" cols="2">
         <h3>Titre 2</h3>
         <p>
           As an alternative theory, (and because Latin scholars do this sort of
@@ -39,10 +39,14 @@
           inspired a graphic designer, it's admittedly an odd way for Cicero to
           sail into the 21st century.
         </p>
-      </b-col>
-    </b-row>
+      </BCol>
+    </BRow>
     <div style="height: 300px"></div>
   </div>
 </template>
 <script setup>
+import {
+  BRow,
+  BCol
+} from "bootstrap-vue-next";
 </script>

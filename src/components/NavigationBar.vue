@@ -1,93 +1,75 @@
 <template>
+  <BNavbar toggleable="lg">
+    <BNavbarBrand href="#"><router-link
+        :to="{ name: 'Accueil' }"
+        class="nav-link"
+        :class="{ active: $route.name === 'Accueil' }"
+    >Logo</router-link></BNavbarBrand>
+    <BNavbarToggle target="nav-collapse"></BNavbarToggle>
+    <BCollapse id="nav-collapse" is-nav>
+      <BNavbarNav>
 
-  <b-navbar toggleable="lg" type="light">
-    <b-navbar-brand href="#">
-      <!-- Logo à mettre ici -->
-    </b-navbar-brand>
-    <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav>
-        <router-link
-            :to="{ name: 'Accueil' }"
-            class="nav-link"
-            v-bind:class="{ active: $route.name === 'Accueil' }"
-        >Accueil
-        </router-link>
         <router-link
             :to="{ name: 'Blogue' }"
-            class="nav-link ml-5"
-            v-bind:class="{ active: $route.name === 'Blogue' }"
-        >Blogue
-        </router-link>
-        <b-nav-item-dropdown class="ml-5" text="Activités">
-          <b-dropdown-item
-              :to="{ name: 'Ateliers' }"
-              v-bind:class="{ active: $route.name === 'Ateliers' }"
-          >Ateliers
-          </b-dropdown-item
-          >
-          <b-dropdown-item
-              :to="{ name: 'Échanges Intéractifs' }"
-              v-bind:class="{ active: $route.name === 'Échanges Intéractifs' }"
-          >Échanges Intéractifs
-          </b-dropdown-item
-          >
-          <b-dropdown-item
-              :to="{ name: 'Conférences' }"
-              v-bind:class="{ active: $route.name === 'Conférences' }"
-          >Conférences
-          </b-dropdown-item
-          >
-        </b-nav-item-dropdown>
+            class="nav-link ms-5"
+            :class="{ active: $route.name === 'Blogue' }"
+        >Blogue</router-link>
+        <BNavItemDropdown class="ms-5" text="Activités">
+          <BDropdownItem :to="{ name: 'Ateliers' }" :class="{ active: $route.name === 'Ateliers' }">Ateliers</BDropdownItem>
+          <BDropdownItem :to="{ name: 'Échanges Intéractifs' }" :class="{ active: $route.name === 'Échanges Intéractifs' }">Échanges Intéractifs</BDropdownItem>
+          <BDropdownItem :to="{ name: 'Conférences' }" :class="{ active: $route.name === 'Conférences' }">Conférences</BDropdownItem>
+        </BNavItemDropdown>
         <router-link
             :to="{ name: 'Recherche' }"
-            class="nav-link ml-5 disabled"
-            v-bind:class="{ active: $route.name === 'Recherche' }">
-          Recherche
-        </router-link>
+            class="nav-link ms-5 disabled"
+            :class="{ active: $route.name === 'Recherche' }"
+        >Recherche</router-link>
         <router-link
             :to="{ name: 'Me joindre' }"
-            class="nav-link ml-5"
-            v-bind:class="{ active: $route.name === 'Nous joindre' }">
-          Me Joindre
-        </router-link>
+            class="nav-link ms-5"
+            :class="{ active: $route.name === 'Nous joindre' }"
+        >Me Joindre</router-link>
         <router-link
             :to="{ name: 'À propos' }"
-            class="nav-link ml-5"
-            v-bind:class="{ active: $route.name === 'À propos' }">
-          À propos
-        </router-link>
-
-      </b-navbar-nav>
-      <b-navbar-nav class="ml-auto">
-        <b-link v-if="isLoggedIn" class="nav-link logout" @click="logOut">
+            class="nav-link ms-5"
+            :class="{ active: $route.name === 'À propos' }"
+        >À propos</router-link>
+      </BNavbarNav>
+      <BNavbarNav class="ms-auto">
+        <BLink v-if="isLoggedIn" class="nav-link logout" @click="logOut">
           Se déconnecter
-        </b-link>
-
+        </BLink>
         <router-link
             v-else
             :to="{ name: 'Connexion' }"
-            class="nav-link mr-4"
-            v-bind:class="{ active: $route.name === 'Connexion' }">
-          Connexion
-        </router-link>
+            class="nav-link me-4"
+            :class="{ active: $route.name === 'Connexion' }"
+        >Connexion</router-link>
         <router-link
             v-if="!isLoggedIn"
             :to="{ name: 'Inscription' }"
-            class="nav-link mr-4"
-            v-bind:class="{ active: $route.name === 'Inscription' }">
-          Inscription
-        </router-link>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
+            class="nav-link me-4"
+            :class="{ active: $route.name === 'Inscription' }"
+        >Inscription</router-link>
+      </BNavbarNav>
+    </BCollapse>
+  </BNavbar>
 </template>
 
 <script setup>
 import {onMounted, ref} from "vue";
 import {onAuthStateChanged, signOut} from "firebase/auth";
 import {auth} from "@/firebase/firebaseInit";
-
+import {
+  BNavbar,
+  BNavbarBrand,
+  BNavbarToggle,
+  BCollapse,
+  BNavbarNav,
+  BNavItemDropdown,
+  BDropdownItem,
+  BLink
+} from "bootstrap-vue-next";
 const isLoggedIn = ref(false);
 
 onMounted(() => {

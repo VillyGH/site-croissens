@@ -1,9 +1,9 @@
 <template>
   <div class="app">
     <div v-if="isLoading" id="spinner" class="text-center">
-      <b-spinner
+      <BSpinner
           variant="info"
-      ></b-spinner>
+      ></BSpinner>
     </div>
     <div v-else>
       <NavigationBar/>
@@ -16,7 +16,7 @@
 <script setup>
 import NavigationBar from "@/components/NavigationBar";
 import BottomNav from "@/components/Footer.vue";
-import {createApp, onMounted, ref} from "vue";
+import {onMounted, ref} from "vue";
 import {onAuthStateChanged} from "@firebase/auth";
 import {auth} from "@/firebase/firebaseInit";
 import moment from "moment/moment";
