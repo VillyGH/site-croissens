@@ -1,16 +1,9 @@
 <template>
-  <b-col sm="4">
+  <BCol sm="4">
     <h3 class="mt-5">Ajouter un Commentaire</h3>
     <div v-if="isLoggedIn">
-      <b-form-textarea
-          v-model="createdComment"
-          max-rows="6"
-          placeholder="Écrire un commentaire"
-          required
-          rows="5"
-          sm="2"
-      ></b-form-textarea>
-      <b-button class="mt-4" variant="primary" @click="createComment">Envoyer</b-button>
+      <BFormTextarea v-model="createdComment" max-rows="6" placeholder="Écrire un commentaire" required rows="5" sm="2"></BFormTextarea>
+      <BButton class="mt-4" variant="primary" @click="createComment">Envoyer</BButton>
     </div>
     <div v-else>
       <h5>Vous devez être connecté pour publier un commentaire</h5>
@@ -24,54 +17,34 @@
         {{ moment(comment.date, "MMMM Do YYYY, HH:mm:ss").fromNow() }}
       </div>
       <div class="mb-4">
-        <textarea
-            id="comment"
-            v-model="comment.text"
-            class="input-message mt-3"
-            cols="45"
-            required
-            rows="1"
-            v-bind:disabled="editedCommentId !== comment.id"
-        ></textarea>
+        <textarea id="comment" v-model="comment.text" class="input-message mt-3" cols="45" required rows="1" v-bind:disabled="editedCommentId !== comment.id"></textarea>
         <a v-if="isLoggedIn && comment.owner === username" class="ml-4" @click="changeEditMode(comment.id)">
-          <b-icon-pencil-square class="align-middle"></b-icon-pencil-square>
+          <i class="bi bi-pencil-square align-middle"></i>
         </a>
         <div class="mt-2">
           <a class="button ml-3 text-success" @click="likeComment(comment)">
-            <b-icon-hand-thumbs-up-fill v-if="isCommentLiked(comment)"></b-icon-hand-thumbs-up-fill>
-            <b-icon-hand-thumbs-up v-else></b-icon-hand-thumbs-up>
+            <i class="bi bi-pencil-square align-middle" v-if="isCommentLiked(comment)" />
+            <i class="bi bi-hand-thumbs-up" v-else />
             <span class="ml-2">{{ comment.likes.length }}</span>
           </a>
           <a class="button ml-4 text-danger" @click="dislikeComment(comment)">
-            <b-icon-hand-thumbs-down-fill v-if="isCommentDisliked(comment)"></b-icon-hand-thumbs-down-fill>
-            <b-icon-hand-thumbs-down v-else style=""></b-icon-hand-thumbs-down>
+            <i class="bi bi-hand-thumbs-down-fill" v-if="isCommentDisliked(comment)" />
+            <i class="bi bi-hand-thumbs-down" v-else />
             <span class="ml-2">{{ comment.dislikes.length }}</span>
           </a>
         </div>
         <div>
-          <b-button
-              id="confirmEditBtn"
-              class="mt-2"
-              v-bind:hidden="editedCommentId !== comment.id"
-              variant="primary"
-              @click="editComment(comment)"
-          >Confirmer
-          </b-button
-          >
-          <b-button
-              id="confirmEditBtn"
-              class="mt-2"
-              v-bind:hidden="editedCommentId !== comment.id"
-              variant="secondary"
-              @click="changeEditMode(comment.id)"
-          >Annuler
-          </b-button
-          >
+          <BButton id="confirmEditBtn" class="mt-2" v-bind:hidden="editedCommentId !== comment.id" variant="primary" @click="editComment(comment)">
+            Confirmer
+          </BButton>
+          <BButton id="confirmEditBtn" class="mt-2" v-bind:hidden="editedCommentId !== comment.id" variant="secondary" @click="changeEditMode(comment.id)">
+            Annuler
+          </BButton>
         </div>
         <div class="mt-4 text-danger">{{ editErrorMessage }}</div>
       </div>
     </div>
-  </b-col>
+  </BCol>
 </template>
 
 <script setup>
@@ -81,6 +54,7 @@ import {addDoc, collection, doc, getDoc, getDocs, query, updateDoc, where} from 
 import {onAuthStateChanged} from "@firebase/auth";
 import moment from "moment";
 import {useToast} from "vue-toastification";
+import { BCol, BFormTextarea, BButton } from 'bootstrap-vue-next';
 
 const createdComment = ref("");
 const isLoggedIn = ref(false);
@@ -162,10 +136,12 @@ const dislikeComment = async (comment) => {
 };
 
 const isCommentLiked = (comment) => {
+  if(auth.currentUser === null) return false;
   return comment.likes.length !== 0 && comment.likes.includes(auth.currentUser.uid);
 };
 
 const isCommentDisliked = (comment) => {
+  if(auth.currentUser === null) return false;
   return comment.dislikes.length !== 0 && comment.dislikes.includes(auth.currentUser.uid);
 };
 
@@ -178,9 +154,11 @@ const changeEditMode = async (id) => {
 };
 
 const getCurrentUsername = async () => {
-  const user = await getDoc(doc(db, "users", auth.currentUser.uid));
-  if (user.exists()) {
-    return user.data().name;
+  if(auth.currentUser !== null) {
+    const user = await getDoc(doc(db, "users", auth.currentUser.uid));
+    if (user.exists()) {
+      return user.data().name;
+    }
   }
 };
 

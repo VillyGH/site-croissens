@@ -1,18 +1,20 @@
 <template>
-  <div>
-    <router-view/>
+  <div class="container">
+    <router-view />
+    <h1 class="text-center">Conférences</h1>
     <div class="ml-5 mt-5">
-      <div v-for="conference in conferences" v-bind:key="conference">
+      <div v-for="conference in conferences" :key="conference.id">
         <div>
-          <img
-              v-bind:alt="'Image de la conférence ' + conference.name"
-              v-bind:src="conference.image"
-          />
+          <img :alt="'Image de la conférence ' + conference.name" :src="conference.image" />
         </div>
         <div class="mt-4">
-          <b-link class="text-primary" style="text-decoration: none">
+          <BLink
+              class="text-primary"
+              :href="'/conference/' + conference.id"
+              style="text-decoration: none"
+          >
             {{ conference.name }}
-          </b-link>
+          </BLink>
         </div>
         <div class="mt-4">{{ conference.description }}</div>
         <div class="mt-4">Durée : {{ conference.duration }}</div>
@@ -22,13 +24,11 @@
 </template>
 
 <script setup>
-import {useRoute} from "vue-router";
-import {collection, getDocs, query} from "@firebase/firestore";
-import {db} from "@/firebase/firebaseInit";
-import {onMounted, ref} from "vue";
-import moment from "moment";
+import { collection, getDocs, query } from "@firebase/firestore";
+import { db } from "@/firebase/firebaseInit";
+import { onMounted, ref } from "vue";
+import { BLink } from "bootstrap-vue-next";
 
-const route = useRoute();
 const conferences = ref([]);
 
 onMounted(async () => {
@@ -37,12 +37,18 @@ onMounted(async () => {
 
 const loadConferences = async () => {
   const querySnapshot = await getDocs(query(collection(db, "conferences")));
+  const currentDate = new Date();
+  const fetchedConferences = [];
+
   querySnapshot.forEach((doc) => {
     const newDoc = doc.data();
-    if (newDoc.date > moment().format("MMMM Do YYYY, HH:mm:ss")) {
+    const conferenceDate = new Date(newDoc.date);
+    if (conferenceDate > currentDate) {
       newDoc.id = doc.id;
-      conferences.value.push(newDoc);
+      fetchedConferences.push(newDoc);
     }
   });
+
+  conferences.value = fetchedConferences;
 };
 </script>

@@ -4,7 +4,7 @@
       <b-form @submit.prevent="register">
         <h1>Créer un compte</h1>
         <label class="mt-3" for="username">Nom d'utilisateur</label>
-        <b-form-input
+        <BFormInput
             id="username"
             v-model="username"
             placeholder="Nom d'utilisateur"
@@ -13,7 +13,7 @@
             @input="verifyUsername"
         />
         <label class="mt-3" for="email">Courriel</label>
-        <b-form-input
+        <BFormInput
             id="email"
             v-model="email"
             placeholder="Adresse courriel"
@@ -23,7 +23,7 @@
         />
 
         <label class="mt-3" for="password">Mot de passe</label>
-        <b-form-input
+        <BFormInput
             id="password"
             v-model="password"
             placeholder="Mot de passe"
@@ -33,14 +33,14 @@
         />
         <div class="mt-4 text-danger">{{ errorMessage }}</div>
         <div class="mt-4 text-success">{{ nameVerifMessage }}</div>
-        <b-button id="submit" class="mt-4" type="submit" variant="primary"
+        <BButton id="submit" class="mt-4" type="submit" variant="primary"
         >Créer le compte
-        </b-button
+        </BButton
         >
       </b-form>
-      <b-button class="mt-4" variant="danger" @click="signInWithGoogle"
+      <BButton class="mt-4" variant="danger" @click="signInWithGoogle"
       >Se connecter avec Google
-      </b-button
+      </BButton
       >
     </b-container>
   </div>

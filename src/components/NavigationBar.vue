@@ -60,16 +60,8 @@
 import {onMounted, ref} from "vue";
 import {onAuthStateChanged, signOut} from "firebase/auth";
 import {auth} from "@/firebase/firebaseInit";
-import {
-  BNavbar,
-  BNavbarBrand,
-  BNavbarToggle,
-  BCollapse,
-  BNavbarNav,
-  BNavItemDropdown,
-  BDropdownItem,
-  BLink
-} from "bootstrap-vue-next";
+import {BNavbar, BNavbarBrand, BNavbarToggle, BCollapse,
+  BNavbarNav, BNavItemDropdown, BDropdownItem, BLink} from "bootstrap-vue-next";
 const isLoggedIn = ref(false);
 
 onMounted(() => {

@@ -1,41 +1,51 @@
 <template>
   <div>
-    <b-container class="mt-5 authContainer" fluid="md">
-      <b-form @submit.prevent="login">
+    <BContainer class="mt-5 authContainer" fluid="md">
+      <BForm @submit.prevent="login">
         <h1 class="text-center">Connexion</h1>
         <label class="mt-3">Adresse courriel</label>
-        <b-form-input
+        <BFormInput
             v-model="email"
             placeholder="Adresse courriel"
             required
             type="text"
         />
         <label class="mt-3">Mot de passe</label>
-        <b-form-input
+        <BFormInput
             v-model="password"
             placeholder="Mot de passe"
             required
             type="password"
         />
         <div class="mt-4 text-danger">{{ errorMessage }}</div>
-        <b-button class="mt-4 authButton" type="submit" variant="primary">
-          Se connecter
-        </b-button>
-        <b-button class="mt-4 ml-4 authButton" variant="danger" @click="signInWithGoogle"
-        >Se connecter avec Google
-        </b-button>
-      </b-form>
-    </b-container>
+        <div class="d-flex justify-content-center mt-4 gap-3">
+          <BButton class="authButton" type="submit" variant="primary">
+            Se connecter
+          </BButton>
+          <BButton class="authButton" variant="danger" @click="signInWithGoogle">
+            Se connecter avec Google
+          </BButton>
+        </div>
+      </BForm>
+    </BContainer>
   </div>
 </template>
+
 <script setup>
-import {useRouter} from "vue-router";
-import {GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup} from "@firebase/auth";
-import {auth, db} from "@/firebase/firebaseInit";
-import {ref} from "vue";
-import {doc, getDoc, writeBatch} from "@firebase/firestore";
-import {useToast} from "vue-toastification";
-import {errorMessages} from "@/externalization/constants";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "@firebase/auth";
+import { auth, db } from "@/firebase/firebaseInit";
+import { doc, getDoc, writeBatch } from "@firebase/firestore";
+import { errorMessages } from "@/externalization/constants";
+
+// Import des composants BootstrapVueNext
+import { BContainer, BForm, BFormInput, BButton } from "bootstrap-vue-next";
 
 const email = ref("");
 const password = ref("");
@@ -44,13 +54,11 @@ const router = useRouter();
 const toast = useToast();
 
 const login = () => {
-  if (verifyUsername) {
+  if (verifyUsername(email.value)) {
     signInWithEmailAndPassword(auth, email.value, password.value)
         .then(() => {
           toast.success("L'utilisateur a été enregistré avec succès !");
-          router.push({
-            name: "Accueil"
-          });
+          router.push({ name: "Accueil" });
         })
         .catch((error) => {
           switch (error.code) {
@@ -58,15 +66,13 @@ const login = () => {
               errorMessage.value = errorMessages.invalidEmail;
               break;
             case "auth/user-not-found":
-              errorMessage.value =
-                  errorMessages.userNotFound;
+              errorMessage.value = errorMessages.userNotFound;
               break;
             case "auth/wrong-password":
               errorMessage.value = errorMessages.invalidPassword;
               break;
             default:
-              errorMessage.value =
-                  errorMessages.defaultMessage;
+              errorMessage.value = errorMessages.defaultMessage;
               break;
           }
         });
@@ -74,7 +80,7 @@ const login = () => {
 };
 
 const verifyUsername = async (username) => {
-  if (username.length < 2 && username.length > 50) {
+  if (username.length < 2 || username.length > 50) {
     errorMessage.value = errorMessages.wrongUsernameLength;
     return false;
   }
@@ -92,7 +98,7 @@ const signInWithGoogle = () => {
         if (!usernameSnap.exists() && !userSnap.exists()) {
           await createUserNameDB(result.user.displayName);
         }
-        await router.push({name: "Accueil"});
+        await router.push({ name: "Accueil" });
       })
       .catch((error) => {
         switch (error.code) {
@@ -100,17 +106,18 @@ const signInWithGoogle = () => {
             errorMessage.value = errorMessages.invalidEmail;
             break;
           case "auth/user-not-found":
-            errorMessage.value =
-                errorMessages.userNotFound;
+            errorMessage.value = errorMessages.userNotFound;
             break;
           case "auth/wrong-password":
             errorMessage.value = errorMessages.invalidPassword;
             break;
           case "auth/account-exists-with-different-credential":
-            errorMessage.value = errorMessages.accountExistsWithDifferentCredential;
+            errorMessage.value =
+                errorMessages.accountExistsWithDifferentCredential;
             break;
           default:
-            errorMessage.value = "Une erreur s'est produite: " + error.code + " " + error.message;
+            errorMessage.value =
+                "Une erreur s'est produite: " + error.code + " " + error.message;
             break;
         }
       });
@@ -121,8 +128,8 @@ const createUserNameDB = async (username) => {
   const usernameDoc = doc(db, `usernames`, username);
 
   const batch = writeBatch(db);
-  batch.set(userDoc, {name: username});
-  batch.set(usernameDoc, {uid: auth.currentUser.uid});
+  batch.set(userDoc, { name: username });
+  batch.set(usernameDoc, { uid: auth.currentUser.uid });
 
   await batch.commit();
 };

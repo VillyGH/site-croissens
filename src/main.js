@@ -5,6 +5,7 @@ import {createBootstrap} from 'bootstrap-vue-next'
 import "vue-toastification/dist/index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue-next/dist/bootstrap-vue-next.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import "./css/style.css";
 import "./css/globals.css";
 import router from "./router";
