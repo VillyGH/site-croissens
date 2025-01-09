@@ -1,42 +1,26 @@
 <template>
-  <b-icon-pencil-square class="link align-middle float-right mx-3"
-                        @click="changeModalVisibility(true)"></b-icon-pencil-square>
-  <b-modal id="modal" v-model="modalShowed" hide-footer v-bind:title="'Modification de l\'article ' + name">
+  <i class="bi bi-pencil-square link align-middle float-right mx-3" @click="changeModalVisibility(true)" />
+  <BModal id="modal" v-model="modalShowed" hide-footer v-bind:title="'Modification de l\'article ' + name">
     <label>Titre</label>
-    <b-form-input
-        v-model="name"
-        placeholder="Titre"
-        required
-        type="text"
-    />
+    <BFormInput v-model="name" placeholder="Titre" required type="text"/>
     <label class="mt-3">Sous-Titre</label>
-    <b-form-input
-        v-model="description"
-        placeholder="Sous Titre"
-        required
-        type="text"
-    />
+    <BFormInput v-model="description" placeholder="Sous Titre" required type="text"/>
     <label class="mt-3">Lien de l'image</label>
-    <b-form-textarea
-        v-model="image"
-        placeholder="Lien de l'image"
-        required
-        type="text"
-    />
+    <BFormTextarea v-model="image" placeholder="Lien de l'image" required type="text"/>
     <div class="float-right">
-      <b-button class="mr-2 mt-3" variant="primary" @click="modifyArticleCategory">Enregistrer</b-button>
+      <BButton class="mr-2 mt-3" variant="primary" @click="modifyArticleCategory">Enregistrer</BButton>
     </div>
-  </b-modal>
+  </BModal>
 </template>
 
 <script setup>
-import {getCurrentInstance, ref} from "vue";
+import {ref} from "vue";
 import {doc, updateDoc} from "@firebase/firestore";
 import {db} from "@/firebase/firebaseInit";
 import {useToast} from "vue-toastification";
 import {errorMessages, successMessages} from "@/externalization/constants";
+import {BModal, BFormInput, BFormTextarea, BButton} from "bootstrap-vue-next";
 
-const instance = getCurrentInstance();
 const props = defineProps(['category']);
 const emit = defineEmits(['editedCategory'])
 const name = ref(props.category.name);

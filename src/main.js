@@ -1,18 +1,18 @@
-import Vue, {createApp} from "vue";
+import {createApp} from "vue";
 import App from "./App.vue";
 import Toast from "vue-toastification";
-import {BootstrapVue, BootstrapVueIcons} from "bootstrap-vue";
+import {createBootstrap} from 'bootstrap-vue-next'
 import "vue-toastification/dist/index.css";
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+import "bootstrap-vue-next/dist/bootstrap-vue-next.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import "./css/style.css";
 import "./css/globals.css";
 import router from "./router";
 
 const app = createApp(App);
 
-app.use(BootstrapVue);
-app.use(BootstrapVueIcons);
+app.use(createBootstrap());
 
 app.use(Toast, {
     transition: "Vue-Toastification__bounce",

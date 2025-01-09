@@ -1,14 +1,16 @@
 <template>
   <div class="app">
-    <div v-if="isLoading" id="spinner" class="text-center">
-      <b-spinner
-          variant="info"
-      ></b-spinner>
-    </div>
-    <div v-else>
-      <NavigationBar/>
-      <router-view/>
-      <BottomNav/>
+    <div class="container">
+      <div v-if="isLoading" id="spinner" class="text-center">
+        <BSpinner
+            variant="info"
+        ></BSpinner>
+      </div>
+      <div v-else>
+        <NavigationBar/>
+        <router-view/>
+        <BottomNav/>
+      </div>
     </div>
   </div>
 </template>
@@ -16,10 +18,11 @@
 <script setup>
 import NavigationBar from "@/components/NavigationBar";
 import BottomNav from "@/components/Footer.vue";
-import {createApp, onMounted, ref} from "vue";
+import {onMounted, ref} from "vue";
 import {onAuthStateChanged} from "@firebase/auth";
 import {auth} from "@/firebase/firebaseInit";
 import moment from "moment/moment";
+import {BSpinner} from "bootstrap-vue-next";
 
 const isLoading = ref(true);
 

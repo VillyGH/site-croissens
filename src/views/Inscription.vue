@@ -1,48 +1,19 @@
 <template>
   <div>
-    <b-container class="mt-5">
-      <b-form @submit.prevent="register">
+      <BForm @submit.prevent="register">
         <h1>Créer un compte</h1>
         <label class="mt-3" for="username">Nom d'utilisateur</label>
-        <b-form-input
-            id="username"
-            v-model="username"
-            placeholder="Nom d'utilisateur"
-            required
-            type="text"
-            @input="verifyUsername"
-        />
+        <BFormInput id="username" v-model="username" placeholder="Nom d'utilisateur" required type="text" @input="verifyUsername"/>
         <label class="mt-3" for="email">Courriel</label>
-        <b-form-input
-            id="email"
-            v-model="email"
-            placeholder="Adresse courriel"
-            required
-            type="text"
-            @input="verifyUsername"
-        />
-
+        <BFormInput id="email" v-model="email" placeholder="Adresse courriel" required type="text" @input="verifyUsername"/>
         <label class="mt-3" for="password">Mot de passe</label>
-        <b-form-input
-            id="password"
-            v-model="password"
-            placeholder="Mot de passe"
-            required
-            type="password"
-            @input="verifyUsername"
-        />
+        <BFormInput id="password" v-model="password" placeholder="Mot de passe" required type="password" @input="verifyUsername"/>
         <div class="mt-4 text-danger">{{ errorMessage }}</div>
         <div class="mt-4 text-success">{{ nameVerifMessage }}</div>
-        <b-button id="submit" class="mt-4" type="submit" variant="primary"
-        >Créer le compte
-        </b-button
-        >
-      </b-form>
-      <b-button class="mt-4" variant="danger" @click="signInWithGoogle"
-      >Se connecter avec Google
-      </b-button
-      >
-    </b-container>
+        <BButton id="submit" class="mt-4" type="submit" variant="primary">Créer le compte</BButton>
+      </BForm>
+      <BButton class="mt-4" variant="danger" @click="signInWithGoogle">Se connecter avec Google
+      </BButton>
   </div>
 </template>
 <script setup>
@@ -53,6 +24,7 @@ import {ref} from "vue";
 import {doc, getDoc, writeBatch} from "@firebase/firestore";
 import {errorMessages, successMessages} from "@/externalization/constants";
 import {useToast} from "vue-toastification";
+import {BForm, BFormInput, BButton} from "bootstrap-vue-next";
 
 const username = ref("");
 const email = ref("");

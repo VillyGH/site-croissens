@@ -3,14 +3,10 @@
     <router-view/>
     <div class="ml-5 mt-5">
       <h1 class="text-center">{{ article.name }}</h1>
-      <img
-          class="categorieArticleImg"
-          v-bind:alt="'Image de la catégorie ' + article.name"
-          v-bind:src="article.image"
-      />
+      <img class="categorieArticleImg" v-bind:alt="'Image de la catégorie ' + article.name" v-bind:src="article.image"/>
       <div class="mt-4 text-secondary">{{ article.description }}</div>
       <div class="mt-4 justify-text">{{ article.text }}</div>
-      <Comments :article-id="this.$route.params.id"/>
+      <Comments :article-id="$route.params.id"/>
     </div>
   </div>
 </template>

@@ -1,12 +1,12 @@
 <template>
-  <b-icon-trash-fill class="link align-middle float-right" @click="changeModalVisibility(true)"></b-icon-trash-fill>
-  <b-modal id="modal" v-model="modalShowed" hide-footer v-bind:title="'Suppression de la catégorie ' + name">
+  <i class="bi bi-trash-fill link align-middle float-right" @click="changeModalVisibility(true)" />
+  <BModal id="modal" v-model="modalShowed" hide-footer v-bind:title="'Suppression de la catégorie ' + name">
     <p class="mt-2">Voulez-vous vraiment supprimer la catégorie {{ name }} ?</p>
     <div class="float-right">
-      <b-button class="mr-2 mt-3" variant="primary" @click="deleteArticleCategory">Oui</b-button>
-      <b-button class="mr-2 mt-3" variant="secondary" @click="changeModalVisibility(false)">Non</b-button>
+      <BButton class="mr-2 mt-3" variant="primary" @click="deleteArticleCategory">Oui</BButton>
+      <BButton class="mr-2 mt-3" variant="secondary" @click="changeModalVisibility(false)">Non</BButton>
     </div>
-  </b-modal>
+  </BModal>
 </template>
 
 <script setup>
@@ -15,6 +15,7 @@ import {deleteDoc, doc} from "@firebase/firestore";
 import {db} from "@/firebase/firebaseInit";
 import {useToast} from "vue-toastification";
 import {errorMessages, successMessages} from "@/externalization/constants";
+import {BModal, BButton} from "bootstrap-vue-next";
 
 const instance = getCurrentInstance();
 const props = defineProps(['category']);
