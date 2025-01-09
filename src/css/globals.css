@@ -51,6 +51,10 @@ body {
 
 /*#region Links */
 
+a {
+    color: black;
+}
+
 a:hover {
     text-decoration: none;
 }
