@@ -4,8 +4,7 @@
     <h1 class="ml-5 mt-5">À propos de Nathalie Blanchet</h1>
     <BRow class="mt-5 justify-content-start">
       <BCol class="col-4 mt-5"><img alt="Portrait de Nathalie Blanchet" class="img-fluid mx-auto d-block"
-                                     src="../assets/img/photoNath4.jpg" style="max-height: 450px; max-width: 300px;"/>
-      </BCol>
+                                     src="../assets/img/photoNath4.jpg" style="max-height: 450px; max-width: 300px;"/></BCol>
       <BCol class="col-4 mt-5 align-self-center"><p class="text-justify mr-5">Mon parcours comme psychologue avec plus
         d’une vingtaine d’années d’expérience en cabinet privé m’a permis d’offrir des services de psychothérapie dont
         les interventions d’orientation humaniste-existentielle étaient axées sur la transformation des croyances

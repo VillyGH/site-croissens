@@ -4,19 +4,9 @@
       <BForm @submit.prevent="login">
         <h1 class="text-center">Connexion</h1>
         <label class="mt-3">Adresse courriel</label>
-        <BFormInput
-            v-model="email"
-            placeholder="Adresse courriel"
-            required
-            type="text"
-        />
+        <BFormInput v-model="email" placeholder="Adresse courriel" required type="text"/>
         <label class="mt-3">Mot de passe</label>
-        <BFormInput
-            v-model="password"
-            placeholder="Mot de passe"
-            required
-            type="password"
-        />
+        <BFormInput v-model="password" placeholder="Mot de passe" required type="password"/>
         <div class="mt-4 text-danger">{{ errorMessage }}</div>
         <div class="d-flex justify-content-center mt-4 gap-3">
           <BButton class="authButton" type="submit" variant="primary">

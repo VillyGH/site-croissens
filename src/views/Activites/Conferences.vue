@@ -1,5 +1,4 @@
 <template>
-  <div class="container">
     <router-view />
     <h1 class="text-center">Conférences</h1>
     <div class="ml-5 mt-5">
@@ -20,7 +19,6 @@
         <div class="mt-4">Durée : {{ conference.duration }}</div>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>

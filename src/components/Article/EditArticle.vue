@@ -2,26 +2,11 @@
   <i class="bi bi-pencil-square link align-middle float-right mx-3" @click="changeModalVisibility(true)" />
   <BModal id="modal" v-model="modalShowed" hide-footer v-bind:title="'Modification de l\'article ' + name">
     <label>Titre</label>
-    <BFormInput
-        v-model="name"
-        placeholder="Titre"
-        required
-        type="text"
-    />
+    <BFormInput v-model="name" placeholder="Titre" required type="text"/>
     <label class="mt-3">Sous-Titre</label>
-    <BFormInput
-        v-model="description"
-        placeholder="Sous Titre"
-        required
-        type="text"
-    />
+    <BFormInput v-model="description" placeholder="Sous Titre" required type="text"/>
     <label class="mt-3">Lien de l'image</label>
-    <BFormTextarea
-        v-model="image"
-        placeholder="Lien de l'image"
-        required
-        type="text"
-    />
+    <BFormTextarea v-model="image" placeholder="Lien de l'image" required type="text"/>
     <div class="float-right">
       <BButton class="mr-2 mt-3" variant="primary" @click="modifyArticleCategory">Enregistrer</BButton>
     </div>

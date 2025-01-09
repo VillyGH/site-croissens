@@ -1,5 +1,4 @@
 <template>
-  <div class="container">
     <footer class="text-center d-flex flex-wrap justify-content-between align-items-center py-3 px-4 mx-auto mt-auto">
       <div class="col-md-4 d-flex align-items-center">
         <span>© {{ currentYear }} Nathalie Blanchet, psychologue</span>
@@ -18,7 +17,6 @@
         </li>
       </ul>
     </footer>
-  </div>
 </template>
 
 <script setup>

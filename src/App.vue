@@ -1,14 +1,16 @@
 <template>
   <div class="app">
-    <div v-if="isLoading" id="spinner" class="text-center">
-      <BSpinner
-          variant="info"
-      ></BSpinner>
-    </div>
-    <div v-else>
-      <NavigationBar/>
-      <router-view/>
-      <BottomNav/>
+    <div class="container">
+      <div v-if="isLoading" id="spinner" class="text-center">
+        <BSpinner
+            variant="info"
+        ></BSpinner>
+      </div>
+      <div v-else>
+        <NavigationBar/>
+        <router-view/>
+        <BottomNav/>
+      </div>
     </div>
   </div>
 </template>

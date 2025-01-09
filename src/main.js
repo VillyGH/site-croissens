@@ -1,4 +1,4 @@
-import Vue, {createApp} from "vue";
+import {createApp} from "vue";
 import App from "./App.vue";
 import Toast from "vue-toastification";
 import {createBootstrap} from 'bootstrap-vue-next'

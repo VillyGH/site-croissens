@@ -2,26 +2,11 @@
   <BLink @click="changeModalVisibility(true)">Créer une catégorie</BLink>
   <BModal id="modal" v-model="modalShowed" hide-footer title="Création de catégorie d'article">
     <label>Titre</label>
-    <BFormInput
-        v-model="name"
-        placeholder="Titre"
-        required
-        type="text"
-    />
+    <BFormInput v-model="name" placeholder="Titre" required type="text"/>
     <label class="mt-3">Sous-Titre</label>
-    <BFormInput
-        v-model="description"
-        placeholder="Sous Titre"
-        required
-        type="text"
-    />
+    <BFormInput v-model="description" placeholder="Sous Titre" required type="text"/>
     <label class="mt-3">Lien de l'image</label>
-    <BFormTextarea
-        v-model="image"
-        placeholder="Lien de l'image"
-        required
-        type="text"
-    />
+    <BFormTextarea v-model="image" placeholder="Lien de l'image" required type="text"/>
     <div class="float-right">
       <BButton class="mr-2 mt-3" variant="primary" @click="createArticleCategory">Ajouter</BButton>
       <BButton class="ml-2 mt-3" variant="secondary" @click="changeModalVisibility(false)">Fermer</BButton>
