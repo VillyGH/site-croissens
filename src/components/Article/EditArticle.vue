@@ -1,6 +1,6 @@
 <template>
   <i class="bi bi-pencil-square link align-middle float-right mx-3" @click="changeModalVisibility(true)" />
-  <BModal id="modal" v-model="modalShowed" hide-footer v-bind:title="'Modification de l\'article ' + name">
+  <BModal id="modal" v-model="modalShowed" hide-BCardTitle v-bind:title="'Modification de l\'article ' + name">
     <label>Titre</label>
     <BFormInput v-model="name" placeholder="Titre" required type="text"/>
     <label class="mt-3">Sous-Titre</label>
