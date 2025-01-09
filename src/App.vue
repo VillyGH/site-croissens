@@ -1,23 +1,21 @@
 <template>
-  <div class="app">
-    <div class="container">
+  <div class="app container d-flex flex-column min-vh-100">
+    <main class="flex-fill ">
       <div v-if="isLoading" id="spinner" class="text-center">
-        <BSpinner
-            variant="info"
-        ></BSpinner>
+        <BSpinner variant="info"></BSpinner>
       </div>
       <div v-else>
         <NavigationBar/>
         <router-view/>
-        <BottomNav/>
       </div>
-    </div>
+    </main>
+    <Footer/>
   </div>
 </template>
 
 <script setup>
 import NavigationBar from "@/components/NavigationBar";
-import BottomNav from "@/components/Footer.vue";
+import Footer from "@/components/Footer.vue";
 import {onMounted, ref} from "vue";
 import {onAuthStateChanged} from "@firebase/auth";
 import {auth} from "@/firebase/firebaseInit";

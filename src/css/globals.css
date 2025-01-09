@@ -1,10 +1,15 @@
-#app {
+.app {
     font-family: "Times New Roman", Times, serif, sans-serif;
     font-size: 1em;
     font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #000000;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
 body {
@@ -57,8 +62,5 @@ a.button, .link {
 /*#endregion*/
 
 footer {
-    left: 0;
-    bottom: 0;
     width: 100%;
-    text-align: center;
 }
